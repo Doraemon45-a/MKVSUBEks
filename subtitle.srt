@@ -1,616 +1,3228 @@
-0
-00:00:01,029 --> 00:00:8,030
-<font color="#ffff00">TRANSLATE BY : DENI AUROR@</font>
-
 1
-00:00:27,029 --> 00:00:28,030
-<i>Ibu.</i>
+00:00:00,001 --> 00:00:15,001
+
+
+
 
 2
-00:00:33,327 --> 00:00:35,078
-<i>Kau berjalan denganku saat itu.</i>
+00:00:15,002 --> 00:00:30,003
+Main bersama RECEH88 & menangkan ratusan juta rupiah!
+PLAY. MAXWIN. WITHDRAW. REPEAT.
 
 3
-00:00:38,832 --> 00:00:40,250
-<i>Kau diam saja</i>
+00:01:53,416 --> 00:01:56,416
+Pagi.
 
 4
-00:00:47,758 --> 00:00:49,843
-<i>Sebelum ada dunia ini.</i>
+00:02:36,083 --> 00:02:39,333
+Kenapa kau selalu bangun
+sebelum alarmku berbunyi?
 
 5
-00:00:56,016 --> 00:00:58,936
-<i>Sebelum malam, atau siang hari.</i>
+00:02:42,291 --> 00:02:45,041
+Aku jam alarm aslimu.
 
 6
-00:01:04,149 --> 00:01:06,068
-<i>Hanya ada kedamaian</i>
+00:02:55,916 --> 00:02:58,000
+Bisa cuti pagi ini?
 
 7
-00:01:14,910 --> 00:01:16,954
-<i>Yang tidak ada dari yang ada.</i>
+00:02:58,500 --> 00:03:02,083
+Tidak bisa. Ada rapat pagi ini
+yang tidak bisa kulewatkan.
 
 8
-00:02:43,248 --> 00:02:44,458
-<i>Ibu.</i>
+00:03:02,125 --> 00:03:03,458
+Ayo, bangun.
 
 9
-00:02:48,462 --> 00:02:49,838
-<i>Dimana kamu</i>
+00:03:08,583 --> 00:03:10,875
+Lagipula kita mau
+jalan-jalan minggu depan.
 
 10
-00:03:06,146 --> 00:03:07,647
-<i>Kemana kau pergi?</i>
+00:03:11,958 --> 00:03:12,958
+Apa?
 
 11
-00:03:43,934 --> 00:03:45,268
-<i>Aku takut</i>
+00:03:13,583 --> 00:03:14,958
+Kita mau ke Kenting.
 
 12
-00:03:59,074 --> 00:04:00,367
-<i>Banyak masalah</i>
+00:03:16,041 --> 00:03:17,666
+Minggu depan?
 
 13
-00:04:05,288 --> 00:04:07,207
-<i>Sebuah teka-teki bagiku.</i>
+00:03:18,500 --> 00:03:20,820
+Bukannya kita sudah bicarakan
+pergi ke Kenting minggu depan?
 
 14
-00:04:50,000 --> 00:04:52,169
-<i>Apakah aku bukan anakmu?</i>
+00:03:21,541 --> 00:03:24,541
+Sial...
 
 15
-00:05:37,881 --> 00:05:39,257
-<i>Siapa kau?</i>
+00:03:26,291 --> 00:03:31,250
+Aku mau bicarakan
+tentang itu hari ini.
 
 16
-00:05:46,890 --> 00:05:48,600
-<i>Kau yang memberi hidup</i>
+00:03:31,291 --> 00:03:34,000
+Barry ingin aku
+membantu pemotretan.
 
 17
-00:05:55,065 --> 00:05:56,733
-<i>Kau yang memberi terang</i>
+00:03:34,833 --> 00:03:36,333
+Kapan?
 
 18
-00:20:02,661 --> 00:20:03,913
-<i>Ibu.</i>
+00:03:37,708 --> 00:03:38,833
+Minggu depan.
 
 19
-00:20:11,212 --> 00:20:12,463
-<i>Lahir.</i>
+00:03:39,291 --> 00:03:42,041
+Mereka belum tahu tanggalnya.
+Tergantung cuaca.
 
 20
-00:20:19,678 --> 00:20:20,554
-<i>Sekarang.</i>
+00:03:46,291 --> 00:03:53,416
+Hei, ini biro iklan Jerman
+dan bayarannya lumayan.
 
 21
-00:20:30,523 --> 00:20:31,649
-<i>Aku</i>
+00:03:55,291 --> 00:03:58,916
+Tidak mudah
+buatku minta libur.
 
 22
-00:20:44,912 --> 00:20:45,996
-<i>Hidup</i>
+00:03:58,958 --> 00:04:02,000
+Kau tahu aku cuma dijatah
+10 hari libur dalam setahun, 'kan?
 
 23
-00:20:57,633 --> 00:20:58,926
-<i>Sisa.</i>
+00:04:06,958 --> 00:04:09,958
+Maaf...
 
 24
-00:21:18,195 --> 00:21:19,822
-<i>Tidak puas.</i>
+00:04:10,000 --> 00:04:12,541
+Aku butuh pekerjaan ini.
 
 25
-00:21:37,131 --> 00:21:38,591
-<i>Aku haus</i>
+00:04:13,083 --> 00:04:15,523
+Aku belum mendapatkan banyak
+kesempatan kerja akhir-akhir ini.
 
 26
-00:21:55,524 --> 00:21:56,567
-<i>Cahaya.</i>
+00:04:16,791 --> 00:04:18,911
+Kapan terakhir kali kita
+jalan-jalan bersama?
 
 27
-00:22:04,283 --> 00:22:05,326
-<i>Kegelapan.</i>
+00:04:19,458 --> 00:04:22,500
+Aku ingin bersantai di udara segar.
+Aku mau berjemur.
 
 28
-00:22:20,216 --> 00:22:21,926
-<i>Bicaralah denganku</i>
+00:04:24,291 --> 00:04:27,166
+Berjemur?
+Kau bisa ke atap!
 
 29
-00:22:34,063 --> 00:22:35,272
-<i>Apa aku ini?</i>
+00:04:48,208 --> 00:04:50,583
+Kat, maaf.
 
 30
-00:22:44,365 --> 00:22:45,366
-<i>Dimana ini?</i>
+00:04:50,833 --> 00:04:52,833
+Aku bodoh.
 
 31
-00:23:53,309 --> 00:23:55,060
-<i>Siapa yang membawaku kemari</i>
+00:04:53,458 --> 00:04:56,219
+Basis klienku kecil, aku
+harus mengambil yang ada.
 
 32
-00:25:30,948 --> 00:25:32,199
-<i>O ibu.</i>
+00:04:58,458 --> 00:05:01,500
+Aku akan bicara dengan
+Barry dan menyelesaikannya.
 
 33
-00:25:34,743 --> 00:25:36,412
-<i>cahaya Abyss.</i>
+00:05:06,708 --> 00:05:09,750
+Kau mau Baozi dari semalam
+untuk makan siangmu?
 
 34
-00:25:46,505 --> 00:25:48,257
-<i>Kau yang melihat semuanya</i>
+00:05:11,166 --> 00:05:12,458
+Makan saja.
 
 35
-00:25:58,225 --> 00:25:59,435
-<i>Bercahaya.</i>
+00:05:13,333 --> 00:05:14,708
+Terima kasih, Sayang.
 
 36
-00:26:06,900 --> 00:26:09,653
-<i>Setiap saat kau bersinar.</i>
+00:06:00,833 --> 00:06:03,833
+Dokter, aku sungguh
+harus mengerti.
 
 37
-00:26:38,724 --> 00:26:40,142
-<i>Aku akan menyentuhmu</i>
+00:06:04,083 --> 00:06:06,309
+Dan aku yakin bicara mewakili
+semua orang yang mendengar.
 
 38
-00:26:45,439 --> 00:26:47,357
-<i>Api memakanmu</i>
+00:06:06,333 --> 00:06:09,125
+Kenapa kau dan
+komunitas medis lainnya
 
 39
-00:26:54,573 --> 00:26:56,033
-<i>Aku gemetar,</i>
+00:06:09,166 --> 00:06:11,333
+terus mempromosikan
+ketakutan pada virus Alvin?
 
 40
-00:26:57,910 --> 00:26:59,828
-<i>menggigil keheranan.</i>
+00:06:12,541 --> 00:06:14,166
+Baik, situasinya begini:
 
 41
-00:27:14,676 --> 00:27:16,553
-<i>Kau yang memimpinku</i>
+00:06:14,208 --> 00:06:16,333
+Kebanyakan orang
+percaya virus Alvin...
 
 42
-00:29:39,571 --> 00:29:40,781
-<i>Kehidupan.</i>
+00:06:16,375 --> 00:06:18,541
+tidak lebih serius
+dari kasus flu ringan.
 
 43
-00:29:46,495 --> 00:29:48,205
-<i>Kau yang memberi hal yang baik</i>
+00:06:18,583 --> 00:06:19,000
+Benar.
 
 44
-00:29:53,669 --> 00:29:55,045
-<i>Kau menciptakan dirimu sendiri</i>
+00:06:19,375 --> 00:06:22,375
+Tapi para ahli takut
+potensi mutasi Alvin
 
 45
-00:29:58,006 --> 00:30:00,550
-<i>dalam bentuk yang selalu berubah.</i>
+00:06:22,416 --> 00:06:25,416
+untuk alasan sederhana.
+Mari kutunjukkan.
 
 46
-00:30:12,020 --> 00:30:13,397
-<i>Kau memberi</i>
+00:06:30,208 --> 00:06:31,208
+Lihatlah.
 
 47
-00:30:18,568 --> 00:30:20,070
-<i>tanpa bertanya</i>
+00:06:33,208 --> 00:06:35,291
+Ada rantai protein
+tidak aktif di Alvin
 
 48
-00:33:17,455 --> 00:33:18,748
-<i>Alami.</i>
+00:06:35,708 --> 00:06:37,625
+yang sangat jelas
+dari urutan Lyssa virus.
 
 49
-00:33:27,299 --> 00:33:29,134
-<i>Siapakah aku untukmu</i>
+00:06:37,666 --> 00:06:41,125
+Itu urutan sama
+dengan rabies.
 
 50
-00:33:45,692 --> 00:33:47,861
-<i>Kau melahap diri sendiri</i>
+00:06:41,166 --> 00:06:41,625
+Dokter...
 
 51
-00:33:50,447 --> 00:33:53,450
-<i>hanya untuk melahirkan lagi.</i>
+00:06:41,666 --> 00:06:42,166
+Aku...
 
 52
-00:34:53,260 --> 00:34:55,428
-<i>Akankah kita selalu bersama?</i>
+00:06:42,208 --> 00:06:42,833
+Dokter!
 
 53
-00:35:20,412 --> 00:35:22,455
-<i>Wahai cahaya cinta</i>
+00:06:42,916 --> 00:06:43,791
+Aku khawatir jika
+mungkin kelak...
 
 54
-00:35:30,839 --> 00:35:32,674
-<i>Jangan pergi dariku.</i>
+00:06:43,833 --> 00:06:45,083
+Dokter! Biar aku bicara!
 
 55
-00:37:04,682 --> 00:37:06,351
-<i>Kamu membangunkan aku</i>
+00:06:45,125 --> 00:06:46,041
+Tidak!
 
 56
-00:37:13,191 --> 00:37:14,984
-<i>Sumber tak terbatas</i>
+00:06:46,083 --> 00:06:46,875
+Aku khawatir...
 
 57
-00:37:19,614 --> 00:37:21,157
-<i>Sungai tak terbatas</i>
+00:06:46,916 --> 00:06:48,000
+Kau sudah mengatakan itu!
 
 58
-00:37:24,869 --> 00:37:27,455
-<i>Seperti awan.</i>
+00:06:48,041 --> 00:06:49,708
+Dan aku sudah dengar.
 
 59
-00:37:40,552 --> 00:37:42,512
-<i>Ibu dari segalanya</i>
+00:06:50,291 --> 00:06:54,000
+Tidak ada kematian, jadi
+kenapa menakut-nakuti?
 
 60
-00:37:48,268 --> 00:37:49,644
-<i>Kau</i>
+00:06:54,958 --> 00:06:58,916
+Dan aku merasa nyaman
+Alvin kebetulan muncul
 
 61
-00:37:52,480 --> 00:37:54,732
-<i>semua hal bertumbuh</i>
+00:06:58,958 --> 00:07:01,000
+di tahun pemilu.
 
 62
-00:38:07,454 --> 00:38:09,622
-<i>Batu itu mengalir</i>
+00:07:01,458 --> 00:07:02,578
+Kutekankan ini lagi.
 
 63
-00:38:10,582 --> 00:38:11,541
-<i>seperti kabut.</i>
+00:07:03,375 --> 00:07:06,333
+Masyarakat kita harus
+menyeriusi wabah ini.
 
 64
-00:40:21,546 --> 00:40:23,590
-<i>Banyak orang berubah</i>
+00:07:06,541 --> 00:07:09,083
+Mempolitisasi virus
+adalah kesalahan besar!
 
 65
-00:40:26,342 --> 00:40:27,802
-<i>dan melewati.</i>
+00:07:09,333 --> 00:07:12,333
+Alvin terus mengancam
+kesehatan masyarakat...
 
 66
-00:40:35,602 --> 00:40:37,103
-<i>TEmpat kau tinggal</i>
+00:07:13,208 --> 00:07:15,125
+Dan tidak peduli
+siapa presidennya.
 
 67
-00:40:46,529 --> 00:40:48,239
-<i>Nyala api yang hidup</i>
+00:07:25,500 --> 00:07:26,500
+Hei!
 
 68
-00:41:04,881 --> 00:41:06,924
-<i>tersembunyi dalam segala hal.</i>
+00:07:27,583 --> 00:07:29,166
+Kau baik saja?
 
 69
-00:42:22,542 --> 00:42:23,876
-<i>Dimana kau</i>
+00:07:52,166 --> 00:07:53,916
+Kau siap?
 
 70
-00:43:53,007 --> 00:43:54,008
-<i>Kau.</i>
+00:07:57,166 --> 00:07:58,166
+Kau lihat itu?
 
 71
-00:43:58,012 --> 00:44:00,264
-<i>Terlalu besar untuk dilihat.</i>
+00:07:58,583 --> 00:07:59,583
+Apa?
 
 72
-00:44:08,064 --> 00:44:10,525
-<i>Tidak ada akhir untuk kelahiranmu.</i>
+00:07:59,708 --> 00:08:02,541
+Tidak bisa buang sampah
+di tempat sampah?
 
 73
-00:44:17,782 --> 00:44:19,492
-<i>Kelahiran kekal</i>
+00:08:11,333 --> 00:08:13,375
+Hei, Jim. Selamat pagi!
 
 74
-00:45:55,630 --> 00:45:57,548
-<i>Apakah dunia ini</i>
+00:08:14,375 --> 00:08:15,458
+Selamat pagi. Pak Lin.
 
 75
-00:46:04,513 --> 00:46:06,182
-<i>Daging sapi dibantai.</i>
+00:08:22,458 --> 00:08:24,166
+Hei, kau baik-baik saja?
 
 76
-00:46:12,063 --> 00:46:13,981
-<i>Anak terlantar</i>
+00:08:24,791 --> 00:08:25,625
+
 
 77
-00:46:18,653 --> 00:46:20,029
-<i>Luka.</i>
+00:08:26,333 --> 00:08:28,708
+Ada apa? Ini cuma flu.
 
 78
-00:46:24,700 --> 00:46:26,202
-<i>Wanita tua</i>
+00:08:29,083 --> 00:08:30,458
+Kau harus ke rumah sakit.
 
 79
-00:46:55,523 --> 00:46:57,441
-<i>Apakah kita akan tertipu?</i>
+00:08:31,291 --> 00:08:36,708
+Rumah Sakit? Aku bosan
+menunggu di rumah sakit.
 
 80
-00:47:11,747 --> 00:47:13,124
-<i>Jiwa.</i>
+00:08:36,916 --> 00:08:38,958
+Selain itu, dokter selalu
+mengatakan hal sama:
 
 81
-00:47:15,543 --> 00:47:16,377
-<i>Harapan</i>
+00:08:39,166 --> 00:08:42,541
+"Tetap di rumah, istirahatlah."
 
 82
-00:47:20,464 --> 00:47:21,632
-<i>Mimpi</i>
+00:08:43,416 --> 00:08:45,136
+Itu bukan hal yang
+sulit untuk dikatakan...
 
 83
-00:47:28,848 --> 00:47:31,183
-<i>Dan kita tidak tahu apa-apa.</i>
+00:08:45,833 --> 00:08:48,166
+Aku bisa saja
+menjadi dokter.
 
 84
-00:47:43,821 --> 00:47:45,072
-<i>Buta.</i>
+00:08:49,166 --> 00:08:52,166
+Dan semua isi berita...
 
 85
-00:47:57,752 --> 00:47:59,128
-<i>O hidup.</i>
+00:08:52,291 --> 00:08:56,500
+Pandemi, virus. Itu tipuan.
 
 86
-00:48:06,469 --> 00:48:08,262
-<i>Dengarkan suaraku</i>
+00:08:56,625 --> 00:08:59,916
+Semua orang hina yang
+punya perusahaan media...
 
 87
-00:49:25,923 --> 00:49:27,174
-<i>Ibu.</i>
+00:08:59,958 --> 00:09:03,708
+...melebih-lebihkan ini untuk
+menurunkan harga saham.
 
 88
-00:49:33,973 --> 00:49:36,559
-<i>Apakah kebaikanmu pernah melemah?</i>
+00:09:04,583 --> 00:09:08,833
+Agar bisa beli murah, dan jual
+tinggi saat ekonomi bangkit.
 
 89
-00:50:13,262 --> 00:50:15,014
-<i>Maukah kau meninggalkan aku</i>
+00:09:09,125 --> 00:09:10,125
+Benarkah itu?
 
 90
-00:50:50,466 --> 00:50:52,426
-<i>Apakah aku lahir dari cinta?</i>
+00:09:11,583 --> 00:09:13,458
+Ya. Mau bertaruh?
 
 91
-00:55:46,386 --> 00:55:47,638
-<i>Ibu.</i>
+00:09:15,500 --> 00:09:18,083
+Aku mau bertaruh
+andai punya uang.
 
 92
-00:55:54,019 --> 00:55:55,729
-<i>Kemana kau pergi?</i>
+00:09:23,041 --> 00:09:25,541
+Terlalu banyak
+kemangi Thailand.
 
 93
-00:56:05,948 --> 00:56:07,866
-<i>Kenapa kau diam?</i>
+00:09:31,083 --> 00:09:34,083
+Nanti kubagi.
 
 94
-00:56:19,628 --> 00:56:22,339
-<i>Bisakah seorang ibu
-melupakan anaknya?</i>
+00:09:34,958 --> 00:09:36,791
+Itu luar biasa.
+Terima kasih, Pak Lin.
 
 95
-00:56:36,478 --> 00:56:38,105
-<i>Kau tidak melakukan apapun</i>
+00:09:36,833 --> 00:09:37,875
+Tak usah sungkan.
 
 96
-00:56:42,192 --> 00:56:43,986
-<i>Kau tidak terlihat salah</i>
+00:09:38,708 --> 00:09:40,291
+Kat, jam berapa?
 
 97
-00:56:57,499 --> 00:56:59,001
-<i>Aku takut padamu</i>
+00:09:41,083 --> 00:09:42,458
+Hampir jam 8.30.
 
 98
-00:57:04,798 --> 00:57:07,676
-<i>Kau, aku harus merasakan cinta</i>
+00:09:46,958 --> 00:09:47,958
+Pak Lin.
 
 99
-00:58:04,941 --> 00:58:06,693
-<i>Begitu banyak kegembiraan.</i>
+00:09:49,541 --> 00:09:50,791
+Sampai jumpa.
 
 100
-00:58:12,824 --> 00:58:14,660
-<i>Kenapa tidak selalu begitu?</i>
+00:09:51,083 --> 00:09:53,208
+Sampai jumpa.
 
 101
-00:58:23,418 --> 00:58:25,170
-<i>Kau yang memberi yang baik</i>
+00:10:04,708 --> 00:10:05,708
+Sampai jumpa.
 
 102
-00:58:35,639 --> 00:58:36,932
-<i>Hidup</i>
+00:11:38,583 --> 00:11:40,000
+Maaf kau harus melihat itu.
 
 103
-00:59:23,895 --> 00:59:25,188
-<i>Untukmu</i>
+00:11:41,125 --> 00:11:42,583
+Aku harusnya tak melambat.
 
 104
-00:59:27,649 --> 00:59:29,776
-<i>semua hal mengalir kembali.</i>
+00:11:43,083 --> 00:11:44,166
+Maaf.
 
 105
-00:59:39,202 --> 00:59:40,537
-<i>Jembatan</i>
+00:11:44,333 --> 00:11:45,791
+Tidak apa-apa.
 
 106
-00:59:46,543 --> 00:59:47,919
-<i>Pintu</i>
+00:11:51,833 --> 00:11:54,541
+Aku akan membuat
+makan malam malam ini.
 
 107
-01:01:47,163 --> 01:01:48,498
-<i>O ibu.</i>
+00:11:54,666 --> 00:11:56,458
+Ya! Kau mau buat apa?
 
 108
-01:02:00,260 --> 01:02:02,137
-<i>Apa yang mereka capai?</i>
+00:11:57,541 --> 00:12:02,875
+Belum tahu. Pakai
+kemangi Thailand.
 
 109
-01:02:06,516 --> 01:02:07,767
-<i>Kesedihan.</i>
+00:12:02,916 --> 00:12:05,083
+Aku janji kau akan suka.
 
 110
-01:02:12,564 --> 01:02:13,773
-<i>Penderitaan.</i>
+00:12:05,541 --> 00:12:06,541
+Baik.
 
 111
-01:03:35,021 --> 01:03:36,314
-<i>Waktu</i>
+00:12:12,333 --> 00:12:13,333
+Sampai jumpa lagi.
 
 112
-01:03:44,072 --> 01:03:45,448
-<i>Siapa yang menghancurkan</i>
+00:12:59,083 --> 00:13:00,083
+Pesan apa?
 
 113
-01:03:52,580 --> 01:03:54,332
-<i>Siapa yang melahap semuanya?</i>
+00:13:00,333 --> 00:13:01,750
+
 
 114
-01:04:09,264 --> 01:04:10,849
-<i>Apa yang akan bertahan?</i>
+00:13:01,791 --> 00:13:05,958
+Aku mau telur gulung
+dengan babi goreng
 
 115
-01:04:50,638 --> 01:04:52,557
-<i>Bagaimana aku bisa menghubungiMu?</i>
+00:13:06,291 --> 00:13:06,791
+Baik.
 
 116
-01:05:10,033 --> 01:05:11,159
-<i>Kau,</i>
+00:13:06,833 --> 00:13:07,833
+Baik.
 
 117
-01:05:15,497 --> 01:05:19,793
-<i>yang baik untuk semua hal yang dicita-citakan.</i>
+00:13:08,166 --> 00:13:10,541
+Dan secangkir
+besar teh susu.
 
 118
-01:05:34,974 --> 01:05:36,643
-<i>Diluar waktu</i>
+00:13:10,833 --> 00:13:12,142
+Jadi, telur gulung babi, dan
+teh susu yang banyak, ya?
 
 119
-01:05:45,527 --> 01:05:47,320
-<i>Di luar kesedihan.</i>
+00:13:12,166 --> 00:13:13,166
+Benar.
 
 120
-01:16:26,459 --> 01:16:27,543
-<i>Ibu.</i>
+00:13:13,208 --> 00:13:13,750
+Makan di sini atau dibungkus?
 
 121
-01:16:36,510 --> 01:16:38,220
-<i>Apa yang kusuka,</i>
+00:13:13,791 --> 00:13:14,250
+Makan di sini.
 
 122
-01:16:42,391 --> 01:16:44,143
-<i>Kapan aku mencintaimu</i>
+00:13:14,416 --> 00:13:14,916
+Baik.
 
 123
-01:17:04,830 --> 01:17:05,873
-<i>Kau.</i>
+00:13:15,333 --> 00:13:16,333
+Terima kasih.
 
 124
-01:17:10,503 --> 01:17:11,796
-<i>Cahaya</i>
+00:13:16,583 --> 00:13:17,458
+Hei, pagi.
 
 125
-01:17:14,507 --> 01:17:15,800
-<i>Kegelapan.</i>
+00:13:17,500 --> 00:13:18,500
+Pagi.
 
 126
-01:17:19,845 --> 01:17:21,222
-<i>Ngengat itu.</i>
+00:13:18,541 --> 00:13:19,541
+Kau ingin yang biasa?
 
 127
-01:17:24,183 --> 01:17:25,309
-<i>Nyala api</i>
+00:13:19,833 --> 00:13:21,458
+Tidak, aku baru makan.
 
 128
-01:17:30,648 --> 01:17:32,024
-<i>teman</i>
+00:13:21,833 --> 00:13:24,583
+Aku mau minum .
 
 129
-01:17:34,235 --> 01:17:35,903
-<i>dan luar negeri</i>
+00:13:24,625 --> 00:13:25,250
+Dibungkus.
 
 130
-01:17:41,033 --> 01:17:42,409
-<i>Anggurnya</i>
+00:13:25,458 --> 00:13:25,958
+Terima kasih.
 
 131
-01:17:44,161 --> 01:17:45,079
-<i>dan piala.</i>
+00:13:26,000 --> 00:13:28,392
+Baik. Aku perlu selesaikan
+pesanan wanita ini dulu.
 
 132
-01:17:59,718 --> 01:18:00,928
-<i>Fajar.</i>
+00:13:28,416 --> 00:13:29,416
+Baik
 
 133
-01:18:06,725 --> 01:18:08,143
-<i>Cahaya kita</i>
+00:13:58,708 --> 00:14:00,750
+
 
 134
-01:18:41,635 --> 01:18:42,595
-<i>O ibu.</i>
+00:14:08,041 --> 00:14:11,583
+Pandemi memengaruhi
+pasar perumahan...
 
 135
-01:18:50,311 --> 01:18:52,438
-<i>Air mata yang telah kau tumpahkan</i>
+00:14:11,958 --> 00:14:14,916
+Properti lebih murah
+daripada tahun lalu.
 
 136
-01:18:56,525 --> 01:18:58,903
-<i>Apa yang telah dipeluk oleh matamu.</i>
+00:14:56,458 --> 00:14:57,458
+Nek.
 
 137
-01:19:03,908 --> 01:19:05,326
-<i>Cinta mengalir dengan bebas.</i>
+00:14:59,041 --> 00:15:00,208
+Kau baik saja?
 
 138
-01:19:10,539 --> 01:19:12,166
-<i>Upaya.</i>
+00:15:30,916 --> 00:15:32,000
+Anak ganteng!
 
 139
-01:19:18,547 --> 01:19:19,924
-<i>Harapan.</i>
+00:16:01,208 --> 00:16:03,041
+Si jalang itu datang
+entah dari mana!
 
 140
-01:19:56,669 --> 01:19:59,004
-<i>Bayang-bayang kabur.</i>
+00:17:31,583 --> 00:17:33,375
+Darurat Sipil.
 
 141
-01:20:06,762 --> 01:20:08,138
-<i>Pertunjukan</i>
+00:17:33,416 --> 00:17:35,791
+Pantau terus untuk
+informasi mendesak.
 
 142
-01:20:20,567 --> 01:20:24,405
-<i>Waktu kembali ke sumbernya.</i>
+00:18:06,000 --> 00:18:07,000
+Selamat pagi, semua.
 
 143
-01:21:11,702 --> 01:21:12,995
-<i>Ibu.</i>
+00:18:08,833 --> 00:18:11,416
+Perhatikan pesan ini.
 
 144
-01:21:19,543 --> 01:21:21,420
-<i>Aku memegang tanganmu</i>
+00:18:12,375 --> 00:18:14,833
+Ada beberapa aturan baru
+untuk semua orang.
 
 145
-01:21:29,303 --> 01:21:30,763
-<i>Aku tidak bermimpi lagi.</i>
+00:18:16,083 --> 00:18:20,708
+Semua pria harus
+melapor ke kantor distrik.
 
 146
-01:21:37,311 --> 01:21:39,146
-<i>Terlampir padamu</i>
+00:18:22,666 --> 00:18:25,708
+Aku akan memotong penismu
+dan memberi makan anjing liar.
 
 147
-01:21:44,985 --> 01:21:48,238
-<i>Daun ke cabang.</i>
+00:18:27,208 --> 00:18:30,166
+Dan untuk para wanita...
 
 148
-01:21:52,367 --> 01:21:55,370
-<i>Cabang ke pohon.</i>
+00:18:31,666 --> 00:18:34,458
+Mereka akan diperkosa
+oleh anjing di jalan.
 
 149
-01:22:06,131 --> 01:22:08,717
-<i>Cinta membawa kita bersama.</i>
+00:18:36,625 --> 00:18:39,625
+Jelas? Ini hidup barumu...
 
 150
-01:22:47,172 --> 01:22:49,216
-<i>Apa yang hidup di dalammu</i>
+00:18:40,875 --> 00:18:44,000
+"Sayang, kau baik-baik saja?"
 
 151
-01:22:51,009 --> 01:22:52,219
-<i>tidak bisa mati</i>
+00:18:44,291 --> 00:18:47,000
+"Di mana kau saat ini?"
 
 152
-01:23:04,815 --> 01:23:06,191
-<i>Kehidupan!</i>
+00:19:01,333 --> 00:19:04,333
+“Orang-orang menggila.
+Saling menyakiti.”
 
 153
-01:23:13,866 --> 01:23:14,491
-<i>Ibu!</i>
+00:19:08,416 --> 00:19:12,583
+"Jangan kembali kemari.
+Aku akan menjemputmu."
+
+154
+00:19:24,458 --> 00:19:25,666
+Pak Lin?
+
+155
+00:19:25,708 --> 00:19:26,708
+Apa-apaan?
+
+156
+00:19:31,583 --> 00:19:32,916
+Hei, tetangga!
+
+157
+00:19:33,583 --> 00:19:35,583
+Pagi yang cerah, bukan?
+
+158
+00:19:35,607 --> 00:19:50,607
+
+
+
+
+159
+00:19:50,608 --> 00:20:05,609
+Main bersama RECEH88 & menangkan ratusan juta rupiah!
+PLAY. MAXWIN. WITHDRAW. REPEAT.
+
+160
+00:20:07,250 --> 00:20:08,458
+Jangan khawatir...
+
+161
+00:20:09,333 --> 00:20:10,583
+Tentang kekasihmu...
+
+162
+00:20:11,958 --> 00:20:14,958
+Aku akan memainkan
+jari untuknya.
+
+163
+00:23:30,875 --> 00:23:32,333
+Selamat pagi.
+
+164
+00:23:32,458 --> 00:23:33,458
+Selamat pagi.
+
+165
+00:23:37,833 --> 00:23:39,458
+Apa yang kau baca?
+
+166
+00:23:41,208 --> 00:23:43,333
+Cuma novel.
+
+167
+00:23:47,458 --> 00:23:49,298
+Aku bisa melihat
+kau fokus ke situ.
+
+168
+00:23:50,625 --> 00:23:54,208
+Tidak ada yang lagi yang
+membaca buku di kereta.
+
+169
+00:23:54,458 --> 00:23:57,833
+Mereka semua fokus
+pada ponsel mereka.
+
+170
+00:23:58,291 --> 00:23:59,291
+Ya...
+
+171
+00:23:59,458 --> 00:24:00,458
+Benar.
+
+172
+00:24:06,083 --> 00:24:08,083
+Buku apa itu?
+
+173
+00:24:09,541 --> 00:24:12,541
+Pak, aku menghargai kau
+mencoba bersikap ramah
+
+174
+00:24:12,583 --> 00:24:15,583
+tapi aku cuma ingin fokus
+pada bukuku sekarang.
+
+175
+00:24:16,583 --> 00:24:17,601
+Tentu...
+
+176
+00:24:17,625 --> 00:24:21,083
+Kau ingin fokus membaca.
+Aku mengerti.
+
+177
+00:24:37,666 --> 00:24:38,666
+Hei...
+
+178
+00:24:42,791 --> 00:24:46,291
+Aku sebenarnya sering
+melihatmu di kereta...
+
+179
+00:24:48,291 --> 00:24:49,458
+Jadi...
+
+180
+00:24:50,166 --> 00:24:51,916
+Kupikir hari ini...
+
+181
+00:24:52,958 --> 00:24:56,708
+Aku akhirnya akan
+memberitahumu.
+
+182
+00:24:57,291 --> 00:24:58,291
+Bahwa...
+
+183
+00:24:59,083 --> 00:25:03,458
+Kupikir kau sangat cantik.
+
+184
+00:25:04,208 --> 00:25:05,208
+Terima kasih.
+
+185
+00:25:24,166 --> 00:25:25,916
+Hei, di mana kau bekerja?
+
+186
+00:25:26,458 --> 00:25:27,666
+Kau sudah selesai?
+
+187
+00:25:29,541 --> 00:25:32,291
+Aku sudah memintamu
+jangan menggangguku.
+
+188
+00:25:33,000 --> 00:25:36,583
+Kau ingin aku menuntutmu
+dengan pelecehan seksual?
+
+189
+00:25:38,208 --> 00:25:40,833
+Aku akan melaporkan ini
+ke polisi jika kau tidak diam.
+
+190
+00:25:53,208 --> 00:25:55,708
+Ada apa dengan
+orang-orang masa kini?
+
+191
+00:25:57,083 --> 00:26:01,458
+Bercakap-cakap di kereta,
+apa ini kejahatan sekarang?
+
+192
+00:26:05,708 --> 00:26:08,833
+Aku cuma mencoba
+berkomunikasi, bersosialisasi.
+
+193
+00:26:09,000 --> 00:26:11,120
+Dan sekarang aku dituduh
+melakukan pelecehan seksual?
+
+194
+00:26:20,458 --> 00:26:23,458
+Aku juga sopan!
+
+195
+00:26:24,291 --> 00:26:26,125
+Dan kuberikan pujian!
+
+196
+00:26:26,166 --> 00:26:29,916
+Pelecehan seksual?
+
+197
+00:26:30,083 --> 00:26:31,500
+Wanita masa kini
+semua sama.
+
+198
+00:26:32,791 --> 00:26:35,125
+Merasa boleh kasar
+karena mereka cantik.
+
+199
+00:26:35,500 --> 00:26:37,541
+Apa yang terjadi
+dengan negara ini?
+
+200
+00:26:38,791 --> 00:26:40,711
+Aku pantas mendapatkan
+yang lebih baik dari ini.
+
+201
+00:26:51,958 --> 00:26:53,291
+Silakan ambil kursiku.
+
+202
+00:26:54,291 --> 00:26:55,291
+Terima kasih.
+
+203
+00:28:24,708 --> 00:28:26,083
+Apa yang terjadi?
+
+204
+00:29:33,916 --> 00:29:36,916
+Aku memecahkan rekor?
+
+205
+00:29:43,458 --> 00:29:46,458
+Kenapa dia melakukan ini?
+
+206
+00:29:46,958 --> 00:29:49,958
+Ini sudah berakhir.
+Mereka menangkapnya.
+
+207
+00:29:51,041 --> 00:29:53,125
+Ini sudah berakhir.
+
+208
+00:30:57,583 --> 00:31:00,833
+Diam, bajingan!
+
+209
+00:31:58,041 --> 00:32:01,041
+"Jim: Jangan pulang.
+Aku akan menjemputmu."
+
+210
+00:33:57,708 --> 00:33:59,208
+Kurasa...
+
+211
+00:34:00,916 --> 00:34:02,291
+Aku tidak bisa bernapas.
+
+212
+00:34:02,541 --> 00:34:04,458
+Kau harus pergi,
+tinggalkan aku.
+
+213
+00:34:04,500 --> 00:34:05,541
+Tidak!
+
+214
+00:34:05,583 --> 00:34:08,583
+Kita tidak bisa
+berhenti di sini!
+
+215
+00:34:12,208 --> 00:34:14,083
+Tidak apa-apa.
+
+216
+00:34:15,333 --> 00:34:16,958
+Siapa namamu?
+
+217
+00:34:19,333 --> 00:34:21,416
+Aku Molly.
+
+218
+00:34:21,541 --> 00:34:24,541
+Molly. Aku Kat.
+
+219
+00:34:25,166 --> 00:34:26,333
+Dengar.
+
+220
+00:34:26,958 --> 00:34:30,041
+Kita dekat pintu keluar.
+Mari terus bergerak.
+
+221
+00:34:30,458 --> 00:34:32,142
+Setelah keluar,
+kita ke rumah sakit.
+
+222
+00:34:32,166 --> 00:34:34,625
+Kami bisa merawat matamu.
+
+223
+00:34:35,583 --> 00:34:36,583
+Ayo!
+
+224
+00:34:37,958 --> 00:34:38,958
+Hei, Nona!
+
+225
+00:34:40,583 --> 00:34:41,958
+Mau lari ke mana?
+
+226
+00:34:58,250 --> 00:34:59,750
+Di situ kau rupanya.
+
+227
+00:35:02,541 --> 00:35:05,541
+Ada pelacur hina lagi.
+
+228
+00:35:07,458 --> 00:35:08,458
+Berdiri!
+
+229
+00:35:22,500 --> 00:35:24,791
+Bukannya itu wanita gemuk
+di kereta? Tunggu aku!
+
+230
+00:35:34,333 --> 00:35:36,125
+Apa-apaan?
+
+231
+00:35:36,333 --> 00:35:37,583
+Kau buta?
+
+232
+00:35:41,916 --> 00:35:42,916
+Sial!
+
+233
+00:35:42,958 --> 00:35:44,458
+Kau buta!
+
+234
+00:35:44,958 --> 00:35:46,166
+Dia kenapa?
+
+235
+00:35:46,458 --> 00:35:47,041
+Bantu kami!
+
+236
+00:35:47,083 --> 00:35:47,625
+Apa?
+
+237
+00:35:47,666 --> 00:35:48,250
+Bantu kami!
+
+238
+00:35:48,291 --> 00:35:49,291
+Apa maksudmu?
+
+239
+00:35:49,583 --> 00:35:50,125
+Apa?
+
+240
+00:35:50,166 --> 00:35:51,926
+Dia ingin membunuh kami!
+Tolong kami!
+
+241
+00:35:52,416 --> 00:35:52,791
+Siapa?
+
+242
+00:35:52,833 --> 00:35:53,833
+Bantu kami!
+
+243
+00:36:08,833 --> 00:36:11,583
+Hei, bajingan!
+Kau menyakiti para gadis ini?
+
+244
+00:36:11,875 --> 00:36:14,333
+Mari lihat seberapa tangguh
+kau melawanku, bajingan tua!
+
+245
+00:36:18,041 --> 00:36:19,041
+Bajingan!
+
+246
+00:37:12,708 --> 00:37:13,708
+Sial!
+
+247
+00:37:18,958 --> 00:37:21,416
+Molly tolong, berdiri!
+
+248
+00:37:21,458 --> 00:37:22,958
+Jangan menyerah!
+
+249
+00:37:26,500 --> 00:37:27,500
+Hei!
+
+250
+00:37:30,833 --> 00:37:32,041
+Bantu kami!
+
+251
+00:37:33,083 --> 00:37:34,083
+Hei!
+
+252
+00:37:34,458 --> 00:37:35,666
+Bantu kami!
+
+253
+00:37:38,291 --> 00:37:40,666
+Aku belum pernah
+bercinta bertiga!
+
+254
+00:37:41,083 --> 00:37:42,083
+Ayo!
+
+255
+00:37:49,958 --> 00:37:50,958
+Ayo!
+
+256
+00:37:51,583 --> 00:37:53,703
+Aku belum pernah terangsang
+begini selama bertahun-tahun.
+
+257
+00:37:54,541 --> 00:37:56,750
+Kalian pelacur seksi!
+
+258
+00:38:16,458 --> 00:38:17,708
+Ada apa denganmu?
+
+259
+00:38:17,958 --> 00:38:19,708
+Kau tak melihat
+wanita ini terluka?
+
+260
+00:38:19,833 --> 00:38:21,666
+Kenapa kau tidak
+membantu kami?
+
+261
+00:38:28,833 --> 00:38:30,833
+Dia kenapa? Dia juga gila?
+
+262
+00:38:31,166 --> 00:38:32,206
+Jalan mana ke rumah sakit?
+
+263
+00:38:34,875 --> 00:38:36,601
+Polisi menyuruhku
+menutup pintu keluar.
+
+264
+00:38:36,625 --> 00:38:38,583
+Kulihat kalian berdua,
+tapi aku tidak tahu...
+
+265
+00:38:38,625 --> 00:38:40,458
+Kupikir kalian gila
+seperti yang lain.
+
+266
+00:38:40,500 --> 00:38:42,041
+Baik!
+
+267
+00:38:42,083 --> 00:38:43,708
+Jalan mana ke rumah sakit?
+
+268
+00:38:45,708 --> 00:38:46,708
+Kau baik-baik saja?
+
+269
+00:38:46,791 --> 00:38:48,083
+Bisa jalan?
+
+270
+00:38:48,250 --> 00:38:49,250
+Aku bisa.
+
+271
+00:38:54,541 --> 00:38:56,041
+Nanti aku menyusul.
+
+272
+00:39:01,375 --> 00:39:02,375
+Ayo!
+
+273
+00:39:02,399 --> 00:39:17,399
+
+
+
+
+274
+00:39:17,400 --> 00:39:32,401
+Main bersama RECEH88 & menangkan ratusan juta rupiah!
+PLAY. MAXWIN. WITHDRAW. REPEAT.
+
+275
+00:39:38,125 --> 00:39:41,125
+Aku tidak tahu siapa yang
+ada di luar sana sekarang.
+
+276
+00:39:41,916 --> 00:39:43,791
+Tapi jika ada yang
+mendengar ini
+
+277
+00:39:43,833 --> 00:39:47,083
+sepertinya sedang terjadi
+krisis yang mengancam jiwa.
+
+278
+00:39:47,875 --> 00:39:50,795
+Yang kutahu sekarang adalah apa
+yang kulihat dari kontak daringku...
+
+279
+00:39:51,250 --> 00:39:53,375
+Kota ini mengalami
+pecahnya kerusuhan sipil.
+
+280
+00:39:54,666 --> 00:39:58,625
+Entah ini serangan
+teroris terorganisir
+
+281
+00:40:00,208 --> 00:40:03,375
+atau obat halusinasi
+dari udara atau di air...
+
+282
+00:40:03,416 --> 00:40:05,750
+atau apa pun.
+
+283
+00:40:09,916 --> 00:40:12,333
+Orang-orang mengancam
+di jalanan. Di mana-mana...
+
+284
+00:40:13,166 --> 00:40:16,750
+Dan mereka mau
+membunuh sadis.
+
+285
+00:40:17,166 --> 00:40:19,476
+Entah bagaimana
+polisi menangani ini.
+
+286
+00:40:19,500 --> 00:40:20,500
+Aku cuma berharap...
+
+287
+00:40:21,458 --> 00:40:22,658
+...dengan senjata mereka.
+
+288
+00:40:24,416 --> 00:40:25,816
+Dan ini bagian
+yang sangat kacau...
+
+289
+00:40:27,458 --> 00:40:28,458
+Lebih-lebih lagi...
+
+290
+00:40:29,458 --> 00:40:31,498
+Ada banyak laporan
+kekerasan seksual juga...
+
+291
+00:40:32,666 --> 00:40:34,626
+....diarahkan pada wanita
+dan lelaki. Tua dan muda.
+
+292
+00:40:35,833 --> 00:40:38,833
+Sulit bagiku untuk percaya
+apa yang terjadi di luar sana...
+
+293
+00:40:41,583 --> 00:40:42,583
+Apapun yang terjadi,
+
+294
+00:40:43,458 --> 00:40:44,750
+aku akan terus
+menyiarkan.
+
+295
+00:41:25,125 --> 00:41:28,500
+Jika kau bertemu seseorang
+yang berperilaku tidak biasa
+
+296
+00:41:29,250 --> 00:41:30,730
+tanggapi serius
+
+297
+00:41:31,125 --> 00:41:33,392
+Lakukan apapun
+untuk melindungi diri
+
+298
+00:41:33,416 --> 00:41:34,625
+Bukan cuma orang asing.
+
+299
+00:41:36,041 --> 00:41:38,561
+Anggota keluargamu mungkin
+mencoba menyakitimu juga.
+
+300
+00:43:09,750 --> 00:43:12,750
+Sial...
+
+301
+00:43:48,500 --> 00:43:51,958
+"Jangan pulang.
+Aku akan menjemputmu"
+
+302
+00:44:52,333 --> 00:44:53,666
+Tolong, hentikan...
+
+303
+00:44:54,083 --> 00:44:56,375
+Tolong, hentikan...
+
+304
+00:44:56,416 --> 00:44:58,333
+Akan kulakukan apa saja.
+
+305
+00:45:05,166 --> 00:45:06,166
+Hei!
+
+306
+00:45:06,666 --> 00:45:07,375
+Hei!
+
+307
+00:45:07,458 --> 00:45:08,458
+Bangun!
+
+308
+00:45:09,333 --> 00:45:11,059
+Sial! Sudah kubilang
+jangan kepalanya lagi!
+
+309
+00:45:11,083 --> 00:45:13,291
+Jika dia tidak sadar,
+ini tidak seru, bukan?
+
+310
+00:45:15,583 --> 00:45:16,916
+Aku punya ide!
+
+311
+00:45:23,750 --> 00:45:25,270
+Ayo putar lagi!
+
+312
+00:45:33,958 --> 00:45:34,916
+Siap...
+
+313
+00:45:34,958 --> 00:45:37,000
+1.2.3!
+
+314
+00:45:45,458 --> 00:45:46,458
+Lepas celana dalamnya.
+
+315
+00:46:00,041 --> 00:46:01,208
+Kau ingin bercinta
+dengannya?
+
+316
+00:46:17,958 --> 00:46:20,166
+Pergi dari sini,
+bajingan kecil!
+
+317
+00:46:21,875 --> 00:46:22,875
+Sial!
+
+318
+00:46:54,000 --> 00:46:55,250
+Kenapa cegah mereka?
+
+319
+00:46:56,625 --> 00:46:57,958
+Aku baru mau
+menembak mereka.
+
+320
+00:47:16,416 --> 00:47:18,017
+Jangan pergi! Tetap di sini!
+Mari bersenang-senang!
+
+321
+00:47:18,041 --> 00:47:19,601
+Mau ke mana? Kau pikir
+kau menyingkirkan kami?
+
+322
+00:47:19,625 --> 00:47:20,791
+Jangan pergi!
+
+323
+00:47:23,208 --> 00:47:24,208
+Ini akan seru!
+
+324
+00:47:29,500 --> 00:47:31,083
+Darurat Sipil.
+
+325
+00:47:31,125 --> 00:47:33,125
+Pantau terus untuk
+informasi mendesak.
+
+326
+00:47:35,000 --> 00:47:36,083
+Itu omong kosong...
+
+327
+00:47:38,083 --> 00:47:41,083
+Beberapa daerah berada
+dalam masalah besar...
+
+328
+00:47:41,916 --> 00:47:42,916
+Buka!
+
+329
+00:47:44,666 --> 00:47:46,333
+Dia terluka! Buka!
+
+330
+00:47:46,875 --> 00:47:48,250
+Baik, buka pintunya.
+
+331
+00:47:54,083 --> 00:47:55,583
+Hati-hati!
+Kau baik-baik saja?
+
+332
+00:47:56,708 --> 00:47:58,458
+Pak, permisi!
+
+333
+00:47:59,458 --> 00:48:00,958
+Bisa minta perawat di sini?
+
+334
+00:48:15,000 --> 00:48:16,666
+Beri ruang untuk pasien.
+
+335
+00:48:29,041 --> 00:48:30,916
+UGD ditutup.
+
+336
+00:48:31,541 --> 00:48:33,181
+Kau harus tinggal
+di sini untuk saat ini.
+
+337
+00:48:33,666 --> 00:48:34,666
+Kenapa?
+
+338
+00:48:35,916 --> 00:48:37,583
+Itu sudah dikuasai.
+
+339
+00:48:38,458 --> 00:48:39,958
+Kantor polisi cuma
+satu blok jauhnya
+
+340
+00:48:40,541 --> 00:48:43,208
+Kami mampu
+bereaksi cukup cepat
+
+341
+00:48:44,458 --> 00:48:45,625
+Beberapa bajingan...
+
+342
+00:48:46,708 --> 00:48:49,666
+...membakar
+seorang gadis kecil...
+
+343
+00:48:51,166 --> 00:48:52,166
+Itu...
+
+344
+00:48:56,208 --> 00:48:58,125
+Tekan di sini.
+
+345
+00:49:05,583 --> 00:49:06,642
+Kau kemungkinan besar
+mengalami gegar otak.
+
+346
+00:49:06,666 --> 00:49:08,458
+Kepalamu harus di pindai.
+
+347
+00:49:11,833 --> 00:49:14,875
+Awasi langkahmu.
+Baik. Duduklah.
+
+348
+00:49:21,458 --> 00:49:23,958
+Hei! Aku bagaimana?
+
+349
+00:49:27,625 --> 00:49:29,305
+Itu tidak patah.
+Kau akan baik-baik saja.
+
+350
+00:49:39,458 --> 00:49:41,208
+Nona, kau tidak bisa
+ikut dengan kami.
+
+351
+00:49:45,708 --> 00:49:47,416
+Nona, mari berobat dulu.
+
+352
+00:49:51,625 --> 00:49:53,125
+Beri kami waktu.
+
+353
+00:50:21,125 --> 00:50:24,125
+Terima kasih telah
+mengeluarkanku dari sana...
+
+354
+00:50:27,833 --> 00:50:30,833
+Terima kasih telah
+menyelamatkan nyawaku.
+
+355
+00:50:33,250 --> 00:50:36,250
+Aku tidak akan
+melupakannya.
+
+356
+00:50:51,125 --> 00:50:54,125
+Tidak apa-apa.
+
+357
+00:50:56,291 --> 00:50:57,291
+Molly...
+
+358
+00:50:59,708 --> 00:51:02,708
+Jaga dirimu.
+
+359
+00:51:17,250 --> 00:51:20,208
+Kau cengeng sekali.
+
+360
+00:51:21,208 --> 00:51:22,208
+Ayo.
+
+361
+00:51:37,750 --> 00:51:40,916
+Pantau terus untuk
+informasi mendesak.
+
+362
+00:52:02,000 --> 00:52:03,083
+Hei
+
+363
+00:52:03,958 --> 00:52:05,625
+Boleh pinjam ponselmu?
+
+364
+00:52:06,875 --> 00:52:09,250
+Baik.
+
+365
+00:52:09,500 --> 00:52:11,125
+Terima kasih.
+
+366
+00:52:12,500 --> 00:52:14,208
+Buka kuncinya.
+
+367
+00:52:41,083 --> 00:52:42,875
+Perhatian!
+
+368
+00:52:43,416 --> 00:52:45,833
+Selamat pagi, semua.
+
+369
+00:52:47,000 --> 00:52:50,750
+Sekarang pukul 11:08.
+
+370
+00:52:52,333 --> 00:52:54,000
+Kami menyiarkan dari
+
+371
+00:52:54,041 --> 00:52:56,125
+ruang komando pusat
+di Departemen Pertahanan.
+
+372
+00:52:56,541 --> 00:52:58,583
+Situasi saat ini
+sangat serius
+
+373
+00:52:59,125 --> 00:53:00,583
+Kami membatasi
+keterlibatan pers
+
+374
+00:53:01,125 --> 00:53:02,208
+Hei! Apa yang kau lakukan?
+
+375
+00:53:02,250 --> 00:53:03,375
+Masuk ke aplikasi Line.
+
+376
+00:53:03,583 --> 00:53:05,333
+Kupikir kau mau menelepon.
+
+377
+00:53:05,375 --> 00:53:07,750
+Ya. Daring. Siapa yang
+menghafal nomor telepon?
+
+378
+00:53:07,791 --> 00:53:09,000
+Aku. Itu sulit bagimu?
+
+379
+00:53:09,041 --> 00:53:10,041
+Diam!
+
+380
+00:53:10,500 --> 00:53:13,420
+Kau hampir membuatku diperkosa
+dan dibunuh. Kupakai ponsel ini!
+
+381
+00:53:13,875 --> 00:53:15,958
+Tapi, kami sudah mengatur
+
+382
+00:53:16,000 --> 00:53:20,458
+untuk mengambil bala bantuan dari
+daerah dengan tingkat infeksi rendah
+
+383
+00:53:21,375 --> 00:53:24,875
+Sekarang kuperkenalkan
+presiden kita, Guo-rong Xie.
+
+384
+00:53:39,791 --> 00:53:41,541
+Selamat pagi, semua.
+
+385
+00:53:42,625 --> 00:53:45,875
+Aku meminta maaf atas
+
+386
+00:53:47,083 --> 00:53:49,643
+kurangnya ketepatan waktu kami
+dalam membuat pengumuman ini.
+
+387
+00:53:50,833 --> 00:53:53,708
+Sejak laporan pertama
+gangguan ini masuk
+
+388
+00:53:54,875 --> 00:53:59,250
+administrasi kami
+bekerja tanpa lelah.
+
+389
+00:54:00,958 --> 00:54:01,958
+Pada saat ini
+
+390
+00:54:02,541 --> 00:54:04,333
+komunitas ilmiah
+bangsa belum mampu
+
+391
+00:54:04,375 --> 00:54:06,791
+menjelaskan penyebab
+tindakan kekerasan acak ini.
+
+392
+00:54:09,000 --> 00:54:10,720
+Tapi kita tahu ini
+bukan invasi.
+
+393
+00:54:11,541 --> 00:54:14,666
+Ini bukan senjata kimia
+atau pengurangan populasi...
+
+394
+00:54:16,125 --> 00:54:18,708
+Banyak yang mungkin
+berteori semacam ini.
+
+395
+00:54:19,625 --> 00:54:21,125
+Tapi saat ini
+tidak ada bukti...
+
+396
+00:54:21,166 --> 00:54:23,458
+untuk membuat kesimpulan
+tentang penyebab fenomena ini.
+
+397
+00:54:24,750 --> 00:54:27,541
+Tapi faktor kritisnya bagaimana
+kita menghadapi ancaman ini...
+
+398
+00:54:27,583 --> 00:54:31,250
+...dan kita menghadapinya
+dengan cepat dan efisien.
+
+399
+00:54:31,958 --> 00:54:33,375
+Sejak awal, manusia...
+
+400
+00:54:33,416 --> 00:54:34,708
+Apa-apaan?
+
+401
+00:54:34,750 --> 00:54:35,875
+Pelajaran sejarah?
+
+402
+00:54:37,333 --> 00:54:40,666
+Meski tidak ada
+bukti jika virus Alvin
+
+403
+00:54:41,375 --> 00:54:43,500
+bertanggung jawab
+atas gangguan saat ini
+
+404
+00:54:44,250 --> 00:54:46,625
+itu tidak boleh dikesampingkan
+sebagai kemungkinan.
+
+405
+00:54:47,458 --> 00:54:48,875
+Kita harus bekerja sama
+
+406
+00:54:49,708 --> 00:54:53,541
+Ini tantangan terbesar
+sejarah negara kita.
+
+407
+00:54:54,500 --> 00:54:55,791
+Aku berjanji pada kalian
+
+408
+00:54:56,500 --> 00:54:58,000
+kita akan menang!
+
+409
+00:54:59,208 --> 00:55:00,208
+Terima kasih.
+
+410
+00:55:07,125 --> 00:55:09,750
+Seperti yang telah
+ditegaskan Presiden Xie
+
+411
+00:55:11,125 --> 00:55:15,125
+kita mungkin menghadapi
+penyakit menular
+
+412
+00:55:16,125 --> 00:55:20,750
+yang mengubah
+orang normal
+
+413
+00:55:21,791 --> 00:55:24,708
+menjadi maniak
+sadis pembunuh.
+
+414
+00:55:27,041 --> 00:55:28,833
+Menurut sumber daya
+data besar kami
+
+415
+00:55:30,125 --> 00:55:35,500
+perkiraan infeksi nasional
+antara 15 sampai 20 persen.
+
+416
+00:55:38,083 --> 00:55:40,916
+Biar kuhitungkan.
+
+417
+00:55:40,958 --> 00:55:46,916
+4,5 juta orang terinfeksi
+dan terus meningkat.
+
+418
+00:55:48,083 --> 00:55:50,500
+4,5 juta orang
+yang terinfeksi ini...
+
+419
+00:55:51,458 --> 00:55:54,458
+...berada di luar sana
+di jalanan sekarang.
+
+420
+00:55:55,625 --> 00:56:00,041
+Pembunuhan, pemerkosaan
+dan penyiksaan...
+
+421
+00:56:01,291 --> 00:56:04,458
+...cuma awal dari yang
+mereka bisa lakukan.
+
+422
+00:56:06,375 --> 00:56:08,541
+Kita harus bersatu
+sebagai warga negara...
+
+423
+00:56:09,708 --> 00:56:12,828
+dan mengikuti
+rencana Mendagri.
+
+424
+00:56:13,458 --> 00:56:16,125
+Seperti yang dikatakan
+Presiden Xie sebelumnya:
+
+425
+00:56:16,166 --> 00:56:17,416
+Transparansi penuh...
+
+426
+00:56:18,708 --> 00:56:21,028
+akan memberikan yang terbaik
+dalam mencapai tujuan kita.
+
+427
+00:57:15,083 --> 00:57:16,750
+Apa yang kita
+lakukan sekarang?
+
+428
+00:57:17,416 --> 00:57:18,625
+Diam, bisa?
+
+429
+00:57:19,500 --> 00:57:21,351
+Kau punya mulut besar
+untuk ukuran pria kecil!
+
+430
+00:57:21,375 --> 00:57:22,708
+Kau punya masalah, bajingan?
+
+431
+00:57:22,875 --> 00:57:23,750
+Aku tidak memilih
+bajingan itu!
+
+432
+00:57:23,791 --> 00:57:24,583
+Kau pengecut.
+
+433
+00:57:24,625 --> 00:57:25,208
+Apa katamu?
+
+434
+00:57:25,375 --> 00:57:26,375
+Biar kuberi pelajaran!
+
+435
+00:57:27,875 --> 00:57:28,416
+Jangan berkelahi di sini!
+
+436
+00:57:28,833 --> 00:57:29,833
+Hei!
+
+437
+00:57:30,083 --> 00:57:31,083
+Minggir!
+
+438
+00:57:33,583 --> 00:57:34,583
+Apa-apaan?
+
+439
+00:57:37,750 --> 00:57:38,750
+Apa-apaan?
+
+440
+00:57:44,958 --> 00:57:46,416
+Semua mundur!
+
+441
+00:57:51,333 --> 00:57:53,625
+Berikan ponselku!
+
+442
+00:57:55,791 --> 00:57:56,951
+Semua mundur!
+
+443
+00:58:02,208 --> 00:58:03,208
+Semua mundur!
+
+444
+00:58:35,833 --> 00:58:38,291
+Kau jalang banci!
+Berikan ponselku!
+
+445
+00:58:38,315 --> 00:58:53,315
+
+
+
+
+446
+00:58:53,316 --> 00:59:08,317
+Main bersama RECEH88 & menangkan ratusan juta rupiah!
+PLAY. MAXWIN. WITHDRAW. REPEAT.
+
+447
+00:59:51,875 --> 00:59:52,875
+Hei...
+
+448
+00:59:57,375 --> 00:59:59,291
+Aku ingat kau.
+
+449
+01:00:06,333 --> 01:00:08,750
+Di mana teman cantikmu?
+
+450
+01:00:25,625 --> 01:00:27,125
+Kau tahu?
+
+451
+01:00:29,833 --> 01:00:32,541
+Astaga.
+
+452
+01:00:33,666 --> 01:00:36,333
+Aku akan menikmatimu.
+
+453
+01:00:39,875 --> 01:00:41,250
+Tidak!
+
+454
+01:00:44,625 --> 01:00:48,125
+Tidak...
+
+455
+01:02:05,291 --> 01:02:08,000
+"Kat: Ponselku hilang."
+
+456
+01:02:08,041 --> 01:02:10,333
+"Aku di rumah sakit NTU."
+
+457
+01:02:10,375 --> 01:02:13,166
+"Aku tidak terluka."
+
+458
+01:02:32,875 --> 01:02:33,875
+Halo?
+
+459
+01:02:35,375 --> 01:02:37,916
+Kau baik-baik saja?
+Di mana kau? Apa yang terjadi?
+
+460
+01:02:40,833 --> 01:02:43,291
+Kat, kau baik-baik saja?
+
+461
+01:02:43,333 --> 01:02:45,541
+Aku dalam perjalanan,
+kau baik-baik saja?
+
+462
+01:02:45,750 --> 01:02:48,125
+Aku tidak terluka.
+Aku di rumah sakit NTU.
+
+463
+01:02:48,333 --> 01:02:51,416
+Kurasa polisi sudah mati...
+
+464
+01:02:52,583 --> 01:02:55,666
+Dan cuma ada orang
+gila di sini sekarang
+
+465
+01:02:55,708 --> 01:02:58,083
+Aku tidak tahu
+ke mana harus pergi.
+
+466
+01:02:58,208 --> 01:02:59,916
+Aku tidak tahu
+harus berbuat apa...
+
+467
+01:02:59,958 --> 01:03:01,000
+Bisa membantuku?
+
+468
+01:03:01,041 --> 01:03:02,267
+Aku tidak tahu
+harus berbuat apa...
+
+469
+01:03:02,291 --> 01:03:02,916
+Aku tidak tahu...
+
+470
+01:03:02,958 --> 01:03:04,541
+Baik, Kat, dengar.
+
+471
+01:03:04,875 --> 01:03:06,708
+Tarik nafas dalam-dalam.
+Cobalah tenang.
+
+472
+01:03:07,458 --> 01:03:09,298
+Kau harus fokus.
+
+473
+01:03:09,333 --> 01:03:10,500
+Baik...
+
+474
+01:03:12,208 --> 01:03:13,392
+Jalan utama diblokir.
+
+475
+01:03:13,416 --> 01:03:14,809
+Aku harus menempuh
+jalan lebih panjang.
+
+476
+01:03:14,833 --> 01:03:16,273
+Tapi aku akan ke sana.
+
+477
+01:03:17,000 --> 01:03:18,000
+Aku sangat takut...
+
+478
+01:03:20,625 --> 01:03:22,684
+Cari tempat sembunyi.
+
+479
+01:03:22,708 --> 01:03:23,958
+Lalu kau...
+
+480
+01:03:24,333 --> 01:03:26,809
+Kirimi aku pesan Line
+di mana kau berada.
+
+481
+01:03:26,833 --> 01:03:29,153
+Aku tidak bisa kirim pesan.
+Ini bukan ponselku.
+
+482
+01:03:31,166 --> 01:03:32,166
+Baik...
+
+483
+01:03:33,208 --> 01:03:34,726
+Kau bisa menelponku.
+Aku tidak bisa meneleponmu.
+
+484
+01:03:34,750 --> 01:03:35,041
+Kau bisa menelepon.
+
+485
+01:03:35,083 --> 01:03:35,791
+Baik. Aku mengerti.
+
+486
+01:03:36,000 --> 01:03:37,833
+Aku akan meneleponmu
+lagi saat aku tiba di sana.
+
+487
+01:03:38,041 --> 01:03:39,458
+Nanti kukabari saat
+aku sampai di sana.
+
+488
+01:03:44,500 --> 01:03:45,833
+Aku akan ke sana.
+
+489
+01:03:46,000 --> 01:03:47,875
+Baiklah.
+
+490
+01:03:48,041 --> 01:03:49,708
+Pasang mode senyap.
+
+491
+01:03:53,250 --> 01:03:54,875
+Jim.
+
+492
+01:03:56,333 --> 01:03:57,958
+Aku mencintaimu
+
+493
+01:04:00,000 --> 01:04:01,958
+Aku ingin kau tahu...
+
+494
+01:04:02,041 --> 01:04:04,166
+Kau sangat berarti bagiku...
+
+495
+01:04:38,208 --> 01:04:39,833
+Jim?
+
+496
+01:04:40,708 --> 01:04:42,750
+Kau masih di sana?
+
+497
+01:04:43,333 --> 01:04:46,083
+Bicaralah.
+Kau masih di sana?
+
+498
+01:04:46,333 --> 01:04:50,083
+Kau baik-baik saja?
+Bicaralah!
+
+499
+01:04:50,583 --> 01:04:51,583
+Ya.
+
+500
+01:04:52,875 --> 01:04:54,333
+Aku...
+
+501
+01:04:56,083 --> 01:04:57,250
+Aku agak pusing...
+
+502
+01:04:59,208 --> 01:05:00,958
+Aku sangat mencintaimu.
+
+503
+01:05:02,291 --> 01:05:03,541
+Aku juga mencintaimu.
+
+504
+01:05:05,375 --> 01:05:06,500
+Aku segera ke sana.
+
+505
+01:07:40,458 --> 01:07:42,750
+Cacing kecil...
+
+506
+01:07:43,750 --> 01:07:45,041
+Aku senang kau di sini.
+
+507
+01:08:00,958 --> 01:08:05,083
+Kau tahu? Aku selalu
+kesulitan cari teman.
+
+508
+01:08:17,291 --> 01:08:18,458
+Kurasa...
+
+509
+01:08:18,500 --> 01:08:21,500
+Aku cuma perlu
+bertemu orang tepat.
+
+510
+01:08:57,125 --> 01:09:00,458
+Ini ciumanku!
+Aku menciummu sampai mati!
+
+511
+01:09:45,791 --> 01:09:48,875
+Buka pintunya! Jalang!
+
+512
+01:09:52,333 --> 01:09:53,333
+Hei!
+
+513
+01:09:57,208 --> 01:10:01,250
+Aku tidak akan berhenti sampai
+menyetubuhimu sampai mati.
+
+514
+01:10:22,708 --> 01:10:24,250
+Persetan kau! Buka!
+
+515
+01:10:34,750 --> 01:10:38,583
+Maaf, semuanya.
+Pelacur ini milikku.
+
+516
+01:11:04,333 --> 01:11:07,458
+Kau pikir gadis
+gemuk itu lolos?
+
+517
+01:11:09,416 --> 01:11:14,083
+Cairan bola matanya mengering
+di penisku sekarang. Bagaimana?
+
+518
+01:11:16,833 --> 01:11:21,125
+Saat aku selesai,
+dia memohon aku lanjut.
+
+519
+01:11:32,416 --> 01:11:34,375
+Dan kau selanjutnya...
+
+520
+01:11:36,583 --> 01:11:37,583
+Tunggu saja!
+
+521
+01:11:40,708 --> 01:11:42,541
+Cairan vagina menetes,
+tak sabar menanti penisku.
+
+522
+01:11:46,416 --> 01:11:50,375
+Aku bisa mencumbu gadis gemuk
+karenamu. Terima kasih untuk itu.
+
+523
+01:12:26,500 --> 01:12:28,666
+Kau sepertiku...
+
+524
+01:12:30,958 --> 01:12:32,541
+Brutal...
+
+525
+01:12:33,625 --> 01:12:35,833
+Dan rusak.
+
+526
+01:13:49,750 --> 01:13:51,500
+Apa kau...
+
+527
+01:14:16,041 --> 01:14:17,041
+Hei.
+
+528
+01:14:20,166 --> 01:14:22,041
+Ke kamar mandi.
+
+529
+01:14:22,500 --> 01:14:25,083
+Ada satu set borgol.
+Borgol dirimu.
+
+530
+01:14:28,958 --> 01:14:29,958
+Apa?
+
+531
+01:14:30,416 --> 01:14:32,291
+Borgol dirimu ke pipa.
+Sekarang!
+
+532
+01:14:44,166 --> 01:14:45,166
+Tidak.
+
+533
+01:14:50,125 --> 01:14:53,000
+Aku tidak mau begini.
+Tapi aku tidak mengenalmu.
+
+534
+01:14:53,541 --> 01:14:55,291
+Dan aku tidak tahu
+apa kau terinfeksi.
+
+535
+01:14:56,166 --> 01:14:58,686
+Tolong turuti kataku.
+Aku siap membunuhmu.
+
+536
+01:15:01,166 --> 01:15:02,166
+Jalan.
+
+537
+01:15:14,125 --> 01:15:15,125
+Borgol dirimu.
+
+538
+01:15:48,750 --> 01:15:49,750
+Maaf.
+
+539
+01:15:50,541 --> 01:15:53,416
+Aku tahu ini dingin.
+Ini larutan desinfektan kimia.
+
+540
+01:15:53,833 --> 01:15:57,233
+Aku tidak yakin jika itu manjur.
+Tapi lebih baik daripada tidak ada.
+
+541
+01:15:57,416 --> 01:15:59,125
+Ini busuk.
+
+542
+01:15:59,416 --> 01:16:00,416
+Tahan saja.
+
+543
+01:16:04,791 --> 01:16:08,000
+Kau tidak terinfeksi.
+Kau mungkin kebal.
+
+544
+01:16:08,583 --> 01:16:11,000
+Ada kemungkinan kecil.
+
+545
+01:16:12,500 --> 01:16:13,500
+Apa golongan darahmu?
+
+546
+01:16:21,875 --> 01:16:23,125
+Lepaskan pakaianmu.
+
+547
+01:16:25,583 --> 01:16:28,166
+Itu berlumur virus
+terkontaminasi.
+
+548
+01:16:29,000 --> 01:16:30,360
+Nanti kuberi pengering.
+
+549
+01:16:35,083 --> 01:16:37,283
+Bagaimana kutanggalkan
+pakaianku seperti ini?
+
+550
+01:16:40,916 --> 01:16:41,916
+Usahakan.
+
+551
+01:16:50,083 --> 01:16:51,083
+Kau dokter?
+
+552
+01:16:51,750 --> 01:16:52,958
+Ahli virologi.
+
+553
+01:16:55,166 --> 01:16:57,041
+Kenapa kau
+di bangsal bersalin ini?
+
+554
+01:16:59,083 --> 01:17:02,000
+Mereka merenovasi
+lantai ini. Ini kosong.
+
+555
+01:17:03,333 --> 01:17:06,875
+Pintu ini pintu terkuat
+di seluruh rumah sakit.
+
+556
+01:17:07,458 --> 01:17:10,666
+Bangsal bersalin punya
+pintu logam tebal ini.
+
+557
+01:17:12,208 --> 01:17:14,489
+Agar orang tua merasa
+bayi mereka aman.
+
+558
+01:17:15,166 --> 01:17:16,916
+Tapi siapa yang
+mau mencuri bayi?
+
+559
+01:17:28,125 --> 01:17:29,125
+Kau punya anak?
+
+560
+01:17:30,000 --> 01:17:31,000
+Tidak.
+
+561
+01:17:34,041 --> 01:17:35,625
+Bisa berputar?
+
+562
+01:17:37,500 --> 01:17:38,208
+
+
+563
+01:17:49,708 --> 01:17:51,791
+Tidak punya anak.
+Kau beruntung.
+
+564
+01:17:52,833 --> 01:17:54,916
+Kasihan mereka
+yang punya anak.
+
+565
+01:17:57,041 --> 01:18:00,041
+Virus Alvin menghancurkan
+hidup dan masa depan kita.
+
+566
+01:18:03,166 --> 01:18:04,166
+Kau sudah selesai?
+
+567
+01:18:54,708 --> 01:18:57,583
+Jika terinfeksi, kau harusnya
+sudah menunjukkan gelagat.
+
+568
+01:19:01,250 --> 01:19:04,050
+Aku akan mengambil sampel
+darah setelah kau berpakaian.
+
+569
+01:19:25,833 --> 01:19:27,393
+Maaf kutakuti kau
+dengan pistol.
+
+570
+01:19:27,833 --> 01:19:29,291
+Untuk perlindungan.
+
+571
+01:19:29,916 --> 01:19:30,625
+Beberapa bulan lalu
+
+572
+01:19:30,875 --> 01:19:33,916
+aku sadar mungkin butuh pistol,
+jadi aku mencetaknya dengan 3D.
+
+573
+01:19:34,416 --> 01:19:35,541
+Ini bukan mainan.
+
+574
+01:19:36,791 --> 01:19:38,267
+Dan untungnya,
+ada beberapa peluru.
+
+575
+01:19:38,291 --> 01:19:40,500
+Suvenir dari dinas
+militerku. Mengerti?
+
+576
+01:19:44,750 --> 01:19:48,270
+Setahun penuh, kucoba memberitahu
+orang-orang virus ini akan bermutasi.
+
+577
+01:19:48,583 --> 01:19:51,791
+Tapi tidak ada yang
+percaya dokter lagi.
+
+578
+01:19:52,541 --> 01:19:55,083
+Semua harus dipolitisasi.
+Tidak ada lagi kebenaran.
+
+579
+01:19:55,125 --> 01:19:56,750
+Politisi yang terburuk.
+
+580
+01:19:57,750 --> 01:20:01,500
+Karantina nasional mungkin terasa
+seperti bunuh diri karir bagi mereka.
+
+581
+01:20:02,750 --> 01:20:05,333
+Ini tahun pemilu. Dan mereka
+tidak mau mengambil risiko...
+
+582
+01:20:06,083 --> 01:20:08,666
+Mendorong negara
+ke dalam resesi.
+
+583
+01:20:10,875 --> 01:20:12,916
+Virus ini  seperti
+dirasuki roh jahat.
+
+584
+01:20:13,916 --> 01:20:16,166
+Ini mempengaruhi
+sistem limbik di otak kita.
+
+585
+01:20:16,291 --> 01:20:18,666
+Menghubungkan area
+yang mengatur agresi...
+
+586
+01:20:18,708 --> 01:20:21,250
+...ke area yang mengatur
+dorongan seksual.
+
+587
+01:20:21,583 --> 01:20:24,416
+Area otak ini tidak
+terlalu berbeda.
+
+588
+01:20:26,083 --> 01:20:27,500
+Ini cukup akademis,
+kau mengerti?
+
+589
+01:20:28,500 --> 01:20:29,500
+Tapi...
+
+590
+01:20:30,666 --> 01:20:33,958
+Aku percaya mutasi virus ini
+terjadi melalui proses alami.
+
+591
+01:20:34,875 --> 01:20:36,916
+Sistem limbik bukan lelucon.
+
+592
+01:20:37,375 --> 01:20:41,666
+Kita mengira manusia organisme
+cerdas yang mampu bernalar...
+
+593
+01:20:42,000 --> 01:20:44,458
+dan membuat
+keputusan yang logis.
+
+594
+01:20:45,000 --> 01:20:46,041
+Tapi...
+
+595
+01:20:47,375 --> 01:20:48,666
+Kenyataannya adalah
+
+596
+01:20:49,166 --> 01:20:51,166
+kita adalah budak
+dari sistem limbik.
+
+597
+01:20:51,458 --> 01:20:54,916
+Otak yang lebih tinggi
+ada untuk melayaninya.
+
+598
+01:20:56,875 --> 01:20:58,392
+Kebetulan, ada kasus
+yang terdokumentasi
+
+599
+01:20:58,416 --> 01:21:00,256
+di mana pasien dengan
+sistem limbik yang rusak
+
+600
+01:21:00,833 --> 01:21:03,833
+tidak bisa lepas dari
+rasa haus yang intens.
+
+601
+01:21:04,666 --> 01:21:06,333
+Mereka akan terus
+minum dan minum
+
+602
+01:21:06,375 --> 01:21:07,735
+sampai mereka
+menenggelamkan diri!
+
+603
+01:21:09,500 --> 01:21:11,140
+Itu bagian yang
+sangat menakutkan.
+
+604
+01:21:12,166 --> 01:21:14,875
+Orang-orang terinfeksi itu,
+yang mengejarmu di lorong...
+
+605
+01:21:15,666 --> 01:21:17,958
+Mereka mungkin mengerti
+jika yang mereka lakukan
+
+606
+01:21:18,000 --> 01:21:19,750
+adalah keji dan menjijikkan.
+
+607
+01:21:20,083 --> 01:21:23,333
+Tapi keinginan itu terlalu
+kuat untuk mereka tolak.
+
+608
+01:21:24,708 --> 01:21:26,828
+Meminta mereka untuk tidak
+menuruti keinginan keji itu
+
+609
+01:21:27,041 --> 01:21:30,416
+seperti memintamu
+untuk tidak berkedip.
+
+610
+01:21:34,958 --> 01:21:37,500
+Sulit untuk tidak
+berkedip, bukan?
+
+611
+01:21:38,583 --> 01:21:44,125
+Siapa yang tahu, mungkin mereka
+menangis karena merasa bersalah.
+
+612
+01:21:47,166 --> 01:21:50,708
+Virus meninggalkan hampir
+setiap fungsi otak utuh.
+
+613
+01:21:50,875 --> 01:21:52,726
+Dan itu tidak menghalangi
+imajinasi sama sekali.
+
+614
+01:21:52,750 --> 01:21:54,041
+Sebaliknya...
+
+615
+01:21:54,916 --> 01:21:57,956
+Itu membuatmu melakukan
+hal-hal paling mengerikan.
+
+616
+01:22:01,833 --> 01:22:05,541
+Kupikir karena inilah kenapa yang
+terinfeksi tidak saling menyerang.
+
+617
+01:22:07,166 --> 01:22:11,791
+Agar mereka puas,
+korbannya harus menderita.
+
+618
+01:22:14,041 --> 01:22:17,125
+Kau tidak bisa
+memperkosa keinginan, benar?
+
+619
+01:22:17,250 --> 01:22:18,250
+Benar?
+
+620
+01:22:20,791 --> 01:22:22,751
+Bagaimana kau tahu jika
+kau tidak pernah mencoba?
+
+621
+01:22:24,625 --> 01:22:25,916
+Hei, sudah selesai?
+
+622
+01:22:25,958 --> 01:22:27,458
+Ayo lakukan tes darah.
+
+623
+01:22:30,791 --> 01:22:31,791
+Sebentar...
+
+624
+01:23:36,500 --> 01:23:38,166
+Tidak harus serumit ini...
+
+625
+01:24:00,166 --> 01:24:01,666
+Lupakan tes darah.
+
+626
+01:24:01,708 --> 01:24:03,828
+Aku baru saja menyuntikmu
+dengan kultur virus Alvin.
+
+627
+01:24:04,250 --> 01:24:07,125
+Jika kau tidak kebal, kau
+segera menunjukkan gejala.
+
+628
+01:24:09,250 --> 01:24:11,000
+Nanti kucek kau
+dalam 5 menit.
+
+629
+01:24:12,375 --> 01:24:14,295
+Jika kau tidak menunjukkan
+tanda-tanda infeksi...
+
+630
+01:24:14,333 --> 01:24:15,916
+Kita ke atap.
+
+631
+01:24:16,583 --> 01:24:17,958
+Akan ada helikopter
+untuk kita.
+
+632
+01:24:19,291 --> 01:24:22,583
+Kami bisa menggunakanmu
+untuk kembangkan vaksin.
+
+633
+01:24:24,208 --> 01:24:26,375
+Jika aku membuka tirai dan
+menemukanmu terinfeksi
+
+634
+01:24:27,833 --> 01:24:29,250
+akan kubunuh kau.
+
+635
+01:24:31,041 --> 01:24:32,401
+Aku tahu kau tidak
+percaya kepadaku.
+
+636
+01:24:32,750 --> 01:24:34,190
+Kau juga tidak ingin
+pergi denganku.
+
+637
+01:24:34,750 --> 01:24:36,000
+Tapi pikirkanlah.
+
+638
+01:24:36,916 --> 01:24:38,876
+Darahmu bisa digunakan
+untuk menyelamatkan nyawa.
+
+639
+01:24:39,833 --> 01:24:41,833
+Siapa yang tahu? Mungkin
+kau bisa selamatkan dunia.
+
+640
+01:24:52,708 --> 01:24:53,708
+Sial.
+
+641
+01:24:57,458 --> 01:25:00,833
+Saat aku sampai di sini,
+staf sudah tidak ada.
+
+642
+01:25:02,000 --> 01:25:03,958
+Tapi ada 8 bayi
+terlantar di sini.
+
+643
+01:25:04,916 --> 01:25:08,125
+Aku hampir tidak bisa meyakinkan
+pemerintah untuk menjemputku.
+
+644
+01:25:11,125 --> 01:25:14,333
+Para maniak itu. Jika
+menemukan bayi-bayi itu...
+
+645
+01:25:14,750 --> 01:25:17,166
+....mereka akan
+membunuh mereka...
+
+646
+01:25:17,250 --> 01:25:19,083
+...lalu memakannya.
+
+647
+01:25:19,708 --> 01:25:21,028
+Jika aku tidak
+membunuh bayi ini...
+
+648
+01:25:22,833 --> 01:25:24,673
+...mereka akan jatuh
+di tangan lebih buruk.
+
+649
+01:25:25,666 --> 01:25:28,541
+Lalu aku sadar, mungkin
+salah satu dari bayi-bayi ini
+
+650
+01:25:28,666 --> 01:25:30,626
+mungkin bisa menghasilkan
+antibodi yang berharga.
+
+651
+01:25:31,416 --> 01:25:34,416
+Jadi aku menyuntik
+mereka dengan virus.
+
+652
+01:25:35,000 --> 01:25:36,320
+Aku salah?
+
+653
+01:25:37,333 --> 01:25:38,693
+Aku salah?!
+
+654
+01:25:39,208 --> 01:25:41,208
+Bagaimanapun juga
+mereka akan mati!
+
+655
+01:25:41,250 --> 01:25:43,059
+Kubuat keputusan
+paling logis yang ada.
+
+656
+01:25:43,083 --> 01:25:44,791
+Kau mengerti?
+
+657
+01:25:52,250 --> 01:25:54,791
+Mereka semua terinfeksi,
+tidak ada satu pun yang kebal.
+
+658
+01:26:03,291 --> 01:26:06,083
+Kurasa ada satu lebih
+melawan dari yang lain...
+
+659
+01:26:06,125 --> 01:26:07,765
+Dia berhasil bertahan
+sedikit lebih lama.
+
+660
+01:26:08,875 --> 01:26:09,875
+Cuma itu.
+
+661
+01:26:43,416 --> 01:26:46,458
+“Ruang bersalin lantai 8.
+Orang ini punya pistol.”
+
+662
+01:26:50,708 --> 01:26:53,583
+“Penjemputan di RS NTU.
+Pendaratan Helipad di atap.”
+
+663
+01:26:53,625 --> 01:26:56,458
+Sampai: 5 menit, Dr. A. Wong.
+Kepala Virologi.”
+
+664
+01:27:22,250 --> 01:27:23,583
+Bagaimana
+perasaanmu saat ini?
+
+665
+01:27:29,208 --> 01:27:30,541
+Singkirkan pistol itu...
+
+666
+01:28:10,833 --> 01:28:11,833
+Di mana kapaknya?
+
+667
+01:28:23,916 --> 01:28:25,458
+Vaginamu basah?
+
+668
+01:28:27,000 --> 01:28:28,000
+Selanjutnya...
+
+669
+01:28:40,750 --> 01:28:41,750
+Sial!
+
+670
+01:28:47,375 --> 01:28:48,875
+Kau sialan! bajingan!
+
+671
+01:29:04,875 --> 01:29:06,208
+Bangunkan aku!
+
+672
+01:29:07,458 --> 01:29:09,218
+Kau tidak akan punya
+akses ke atap tanpaku!
+
+673
+01:29:10,375 --> 01:29:12,416
+Kenapa kau masih diam?
+Bantu aku berdiri!
+
+674
+01:29:19,791 --> 01:29:20,791
+Sial!
+
+675
+01:29:30,833 --> 01:29:31,833
+Bangunkan aku!
+
+676
+01:29:33,041 --> 01:29:34,041
+Bangunkan aku!
+
+677
+01:29:38,416 --> 01:29:39,416
+Sekarang jalan!
+
+678
+01:29:40,625 --> 01:29:42,250
+Helikopter tidak akan
+membawamu begini.
+
+679
+01:29:42,875 --> 01:29:44,875
+Diam, cepat!
+
+680
+01:30:00,833 --> 01:30:02,041
+Kat...
+
+681
+01:30:03,375 --> 01:30:04,791
+Aku berhasil.
+
+682
+01:30:06,208 --> 01:30:10,041
+Aku berjanji padamu
+aku akan sampai di sini...
+
+683
+01:30:12,041 --> 01:30:13,041
+
+
+684
+01:30:14,333 --> 01:30:16,625
+Ini pacar barumu?
+
+685
+01:30:18,958 --> 01:30:21,458
+Tidak, Jim.
+
+686
+01:30:21,916 --> 01:30:24,083
+Kau kabur dariku?
+
+687
+01:30:26,958 --> 01:30:29,541
+Terima kasih
+telah menjaga Kat.
+
+688
+01:30:31,375 --> 01:30:33,291
+Sekarang...
+
+689
+01:30:34,875 --> 01:30:37,333
+Aku akan memotong penismu.
+
+690
+01:30:39,083 --> 01:30:40,375
+Dan memberi dia makan!
+
+691
+01:30:40,416 --> 01:30:41,208
+Kau bajingan!
+
+692
+01:30:41,250 --> 01:30:42,250
+Tidak!
+
+693
+01:30:44,125 --> 01:30:45,125
+Minggir!
+
+694
+01:31:07,375 --> 01:31:10,916
+Aku membunuh
+bayi-bayi itu, dan...
+
+695
+01:31:12,500 --> 01:31:15,666
+Rasanya melegakan.
+
+696
+01:31:57,541 --> 01:31:59,041
+Kau menemukanku.
+
+697
+01:32:06,916 --> 01:32:08,625
+Kat...
+
+698
+01:32:10,291 --> 01:32:11,333
+Buka gerbangnya.
+
+699
+01:32:21,541 --> 01:32:22,833
+Bagaimana rasanya?
+
+700
+01:32:30,583 --> 01:32:32,083
+Rasanya...
+
+701
+01:32:35,583 --> 01:32:36,750
+Luar biasa.
+
+702
+01:32:40,041 --> 01:32:41,833
+Aku merasa seperti...
+
+703
+01:32:46,041 --> 01:32:48,125
+Aku akhirnya
+punya tujuan hidup.
+
+704
+01:32:51,708 --> 01:32:53,125
+Tujuan apa?
+
+705
+01:32:54,583 --> 01:32:56,791
+Kau tujuanku.
+
+706
+01:32:58,625 --> 01:33:00,083
+Kat...
+
+707
+01:33:01,541 --> 01:33:02,625
+Dengarkan aku.
+
+708
+01:33:03,958 --> 01:33:05,666
+Saat kudengar
+suaramu hari ini...
+
+709
+01:33:06,791 --> 01:33:09,000
+Ditelepon...
+
+710
+01:33:09,625 --> 01:33:11,125
+Kau terdengar
+sangat ketakutan.
+
+711
+01:33:12,208 --> 01:33:13,458
+Katamu kau butuh aku.
+
+712
+01:33:19,125 --> 01:33:22,458
+Aku tahu aku harus
+menemukanmu.
+
+713
+01:33:26,083 --> 01:33:28,041
+Aku harus bersamamu.
+
+714
+01:33:31,166 --> 01:33:32,833
+Lalu...
+
+715
+01:33:34,916 --> 01:33:37,291
+...memotong payudaramu.
+
+716
+01:33:39,958 --> 01:33:42,458
+Dan menghancurkan wajahmu.
+
+717
+01:33:46,666 --> 01:33:48,250
+Kat, lihat aku.
+
+718
+01:33:50,166 --> 01:33:53,333
+Aku akan mengupas
+kulitmu, pelan-pelan.
+
+719
+01:33:59,875 --> 01:34:01,875
+Lihat aku.
+
+720
+01:34:04,250 --> 01:34:05,541
+Kat...
+
+721
+01:34:10,125 --> 01:34:12,541
+Kau tak sadar betapa
+aku membutuhkanmu?
+
+722
+01:34:15,583 --> 01:34:17,791
+Kau tidak sadar
+aku mencintaimu?
+
+723
+01:34:35,750 --> 01:34:37,583
+Hei, aku sangat mencintaimu.
+
+724
+01:35:42,000 --> 01:36:02,000
+
+
+
+
+725
+01:36:02,024 --> 01:36:22,024
+Main bersama RECEH88 & menangkan ratusan juta rupiah!
+PLAY. MAXWIN. WITHDRAW. REPEAT.
+
