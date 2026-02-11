@@ -57,11 +57,12 @@ jobs:
       - name: Convert MKV to MP4
         run: |
           ffmpeg -i input.mkv \
-          -vf "scale=1920:1080,subtitles=subtitle.srt:charenc=UTF-8:force_style='Fontsize=18,MarginV=25'" \
+          -vf "scale=1920:1080,subtitles=subtitle.srt:charenc=UTF-8:force_style='Fontsize=18,MarginV=25,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BorderStyle=1,Outline=1.2,Shadow=0.5'" \
           -r 24 \
           -c:v libx264 -preset ${{ github.event.inputs.ffmpeg_preset }} -crf 24 \
           -c:a aac -b:a 160k -ac 2 -af "volume=2.5" \
           -movflags +faststart "${{ github.event.inputs.output_name }}.mp4"
+
 
       # 6️⃣ Upload ke Google Drive
       - name: Upload to Google Drive
