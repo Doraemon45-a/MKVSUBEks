@@ -10,7 +10,7 @@ on:
       output_name:
         description: "Nama file output MP4 (tanpa ekstensi)"
         required: true
-        default: "video"
+        default: "TipiStream."
 
       drive_path:
         description: "Path folder tujuan di Google Drive"
