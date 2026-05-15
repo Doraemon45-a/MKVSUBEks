@@ -1,0 +1,100 @@
+name: Add Subtitle to MKV and Upload to Google Drive
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "URL file MKV"
+        required: true
+
+      output_name:
+        description: "Nama file output MKV (tanpa ekstensi)"
+        required: true
+        default: "TipiStream"
+
+      drive_path:
+        description: "Path folder tujuan di Google Drive"
+        required: true
+        default: "ConvertedVideos"
+
+      subtitle_file:
+        description: "Nama file subtitle di repo"
+        required: true
+        default: "subtitle.srt"
+
+      subtitle_language:
+        description: "Kode bahasa subtitle (eng/ind/jpn)"
+        required: false
+        default: "ind"
+
+      rclone_transfers:
+        description: "Jumlah transfer concurrent rclone"
+        required: false
+        default: "4"
+
+jobs:
+  add_subtitle_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2 Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg rclone curl
+
+      # 3 Setup rclone
+      - name: Setup rclone config
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONF_B64 }}" | base64 --decode > ~/.config/rclone/rclone.conf
+
+      # 4 Download MKV
+      - name: Download MKV file
+        run: |
+          curl --fail --retry 5 --retry-delay 10 -L \
+            -o input.mkv \
+            "${{ github.event.inputs.source_url }}"
+
+      # 5 Add subtitle track (NO RE-ENCODE)
+      - name: Add subtitle to MKV
+        run: |
+          ffmpeg -i input.mkv \
+            -i "${{ github.event.inputs.subtitle_file }}" \
+            -map 0 \
+            -map 1 \
+            -c copy \
+            -c:s srt \
+            -metadata:s:s:0 language=${{ github.event.inputs.subtitle_language }} \
+            -disposition:s:0 default \
+            "${{ github.event.inputs.output_name }}.mkv"
+
+      # 6 Upload to Google Drive
+      - name: Upload to Google Drive
+        run: |
+          rclone copy "${{ github.event.inputs.output_name }}.mkv" \
+            "gdrive:/${{ github.event.inputs.drive_path }}/" \
+            -P \
+            --transfers=${{ github.event.inputs.rclone_transfers }}
+
+      # SUCCESS notify
+      - name: Telegram notify SUCCESS
+        if: success()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+          -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+          -d parse_mode="HTML" \
+          -d text="✅ <b>SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A📝 Subtitle: <code>${{ github.event.inputs.subtitle_file }}</code>%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
+
+      # FAILED notify
+      - name: Telegram notify FAILED
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+          -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+          -d parse_mode="HTML" \
+          -d text="❌ <b>FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>"
