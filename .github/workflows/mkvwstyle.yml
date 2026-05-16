@@ -83,7 +83,7 @@ jobs:
         run: |
           ffmpeg -i "${{ github.event.inputs.subtitle_file }}" raw.ass
 
-          sed -i "s|^Style: Default.*|Style: Default,${{ github.event.inputs.font_name }},${{ github.event.inputs.font_size }},&H00FFFFFF,&H00FFFFFF,&H00000000,&H66000000,0,0,0,0,100,100,0,0,3,1,0,2,30,30,40,1|" raw.ass
+          sed -i "s|^Style: Default.*|Style: Default,${{ github.event.inputs.font_name }},${{ github.event.inputs.font_size }},&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,3,1,0,2,30,30,40,1|" raw.ass
 
       # 7️⃣ Add subtitle to MKV (NO RE-ENCODE)
       - name: Add styled subtitle to MKV
