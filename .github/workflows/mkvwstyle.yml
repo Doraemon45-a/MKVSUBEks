@@ -1,0 +1,131 @@
+name: Add Styled Subtitle to MKV and Upload to Google Drive
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "URL file MKV"
+        required: true
+
+      output_name:
+        description: "Nama file output MKV (tanpa ekstensi)"
+        required: true
+        default: "TipiStream"
+
+      drive_path:
+        description: "Path folder tujuan di Google Drive"
+        required: true
+        default: "ConvertedVideos"
+
+      subtitle_file:
+        description: "Nama file subtitle (.srt) di repo"
+        required: true
+        default: "subtitle.srt"
+
+      subtitle_language:
+        description: "Kode bahasa subtitle (ind/eng/jpn)"
+        required: false
+        default: "ind"
+
+      font_name:
+        description: "Nama font subtitle"
+        required: false
+        default: "Arial"
+
+      font_size:
+        description: "Ukuran font"
+        required: false
+        default: "24"
+
+      rclone_transfers:
+        description: "Jumlah concurrent upload"
+        required: false
+        default: "4"
+
+jobs:
+  add_subtitle_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg mkvtoolnix rclone curl
+
+      # 3️⃣ Setup rclone
+      - name: Setup rclone config
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONF_B64 }}" | base64 --decode > ~/.config/rclone/rclone.conf
+
+      # 4️⃣ Verify subtitle exists
+      - name: Check subtitle file
+        run: |
+          if [ ! -f "${{ github.event.inputs.subtitle_file }}" ]; then
+            echo "Subtitle file not found!"
+            exit 1
+          fi
+
+      # 5️⃣ Download MKV
+      - name: Download MKV file
+        run: |
+          curl --fail --retry 5 --retry-delay 10 -L \
+            -o input.mkv \
+            "${{ github.event.inputs.source_url }}"
+
+      # 6️⃣ Convert SRT → ASS with styled background
+      - name: Create styled ASS subtitle
+        run: |
+          ffmpeg -i "${{ github.event.inputs.subtitle_file }}" raw.ass
+
+          sed -i "s|^Style: Default.*|Style: Default,${{ github.event.inputs.font_name }},${{ github.event.inputs.font_size }},&H00FFFFFF,&H00FFFFFF,&H00000000,&H66000000,0,0,0,0,100,100,0,0,3,1,0,2,30,30,40,1|" raw.ass
+
+      # 7️⃣ Add subtitle to MKV (NO RE-ENCODE)
+      - name: Add styled subtitle to MKV
+        run: |
+          mkvmerge \
+            -o "${{ github.event.inputs.output_name }}.mkv" \
+            input.mkv \
+            --language 0:${{ github.event.inputs.subtitle_language }} \
+            --track-name 0:"Styled Subtitle" \
+            --default-track 0:yes \
+            raw.ass
+
+      # 8️⃣ Upload to Google Drive
+      - name: Upload to Google Drive
+        run: |
+          rclone copy "${{ github.event.inputs.output_name }}.mkv" \
+            "gdrive:/${{ github.event.inputs.drive_path }}/" \
+            -P \
+            --transfers=${{ github.event.inputs.rclone_transfers }}
+
+      # ✅ Telegram SUCCESS
+      - name: Telegram notify SUCCESS
+        if: success()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="✅ <b>SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A📝 Subtitle: <code>${{ github.event.inputs.subtitle_file }}</code>%0A🌐 Language: <code>${{ github.event.inputs.subtitle_language }}</code>%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
+
+      # ❌ Telegram FAILED
+      - name: Telegram notify FAILED
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="❌ <b>FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>"
+
+      # 9️⃣ Cleanup
+      - name: Cleanup temp files
+        if: always()
+        run: |
+          rm -f input.mkv
+          rm -f raw.ass
+          rm -f "${{ github.event.inputs.output_name }}.mkv"
