@@ -1,0 +1,106 @@
+name: Add Subtitle to MKV and Upload to Google Drive
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "URL file MKV"
+        required: true
+      output_name:
+        description: "Nama file output MKV (tanpa ekstensi)"
+        required: true
+        default: "TipiStream"
+      drive_path:
+        description: "Path folder tujuan di Google Drive"
+        required: true
+        default: "ConvertedVideos"
+      subtitle_base64:
+        description: "Isi file subtitle (.srt) dalam format base64"
+        required: true
+      subtitle_language:
+        description: "Kode bahasa subtitle (ind/eng/jpn)"
+        required: false
+        default: "ind"
+      rclone_transfers:
+        description: "Jumlah transfer concurrent rclone"
+        required: false
+        default: "4"
+
+jobs:
+  add_subtitle_and_upload:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mkvtoolnix rclone curl
+
+      # 3️⃣ Setup rclone
+      - name: Setup rclone config
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONF_B64 }}" | base64 --decode > ~/.config/rclone/rclone.conf
+
+      # 4️⃣ Download MKV
+      - name: Download MKV file
+        run: |
+          curl --fail --retry 5 --retry-delay 10 -L \
+            -o input.mkv \
+            "${{ github.event.inputs.source_url }}"
+
+      # 5️⃣ Decode subtitle dari base64
+      - name: Decode subtitle from base64
+        run: |
+          echo "${{ github.event.inputs.subtitle_base64 }}" | base64 --decode > subtitle.srt
+          if [ ! -s subtitle.srt ]; then
+            echo "❌ Subtitle decode failed or empty!"
+            exit 1
+          fi
+          echo "✅ Subtitle decoded: $(wc -l < subtitle.srt) lines"
+
+      # 6️⃣ Add subtitle track (NO RE-ENCODE)
+      - name: Add subtitle to MKV
+        run: |
+          mkvmerge \
+            -o "${{ github.event.inputs.output_name }}.mkv" \
+            input.mkv \
+            --language 0:${{ github.event.inputs.subtitle_language }} \
+            --default-track 0:yes \
+            subtitle.srt
+
+      # 7️⃣ Upload to Google Drive
+      - name: Upload to Google Drive
+        run: |
+          rclone copy "${{ github.event.inputs.output_name }}.mkv" \
+            "gdrive:/${{ github.event.inputs.drive_path }}/" \
+            -P \
+            --transfers=${{ github.event.inputs.rclone_transfers }}
+
+      # ✅ Telegram SUCCESS
+      - name: Telegram notify SUCCESS
+        if: success()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="✅ <b>SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🌐 Language: <code>${{ github.event.inputs.subtitle_language }}</code>%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
+
+      # ❌ Telegram FAILED
+      - name: Telegram notify FAILED
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="❌ <b>FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>"
+
+      # 8️⃣ Cleanup
+      - name: Cleanup temp files
+        if: always()
+        run: |
+          rm -f input.mkv subtitle.srt
+          rm -f "${{ github.event.inputs.output_name }}.mkv"
