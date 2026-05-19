@@ -1,0 +1,200 @@
+name: MKV to MP4 
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "URL file MKV sumber"
+        required: true
+      output_name:
+        description: "Nama file output MP4 (tanpa ekstensi)"
+        required: true
+        default: "TipiStream"
+      drive_path:
+        description: "Path folder tujuan di Google Drive"
+        required: true
+        default: "ConvertedVideos"
+      video_codec:
+        description: "Codec video (copy / h264 / h265)"
+        required: false
+        default: "copy"
+      audio_codec:
+        description: "Codec audio (copy / aac / mp3)"
+        required: false
+        default: "copy"
+      subtitle_url:
+        description: "URL subtitle dari paste.rs (opsional, kosongkan jika tidak ada)"
+        required: false
+        default: ""
+      subtitle_language:
+        description: "Kode bahasa subtitle (ind/eng/jpn)"
+        required: false
+        default: "ind"
+      burn_subtitle:
+        description: "Burn subtitle ke video? (yes = hardcode, no = softcode/embed)"
+        required: false
+        default: "no"
+      crf:
+        description: "Kualitas video jika re-encode h264/h265 (18=terbaik, 28=terkecil)"
+        required: false
+        default: "23"
+      rclone_transfers:
+        description: "Jumlah transfer concurrent rclone"
+        required: false
+        default: "4"
+
+jobs:
+  convert_and_upload:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg rclone curl
+          ffmpeg -version | head -1
+          echo "✅ Dependencies installed"
+
+      # 3️⃣ Setup rclone
+      - name: Setup rclone config
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONF_B64 }}" | base64 --decode > ~/.config/rclone/rclone.conf
+          echo "✅ Rclone configured"
+
+      # 4️⃣ Download MKV
+      - name: Download MKV file
+        run: |
+          echo "⬇️ Downloading MKV from: ${{ github.event.inputs.source_url }}"
+          curl --fail --retry 5 --retry-delay 10 -L \
+            -o input.mkv \
+            "${{ github.event.inputs.source_url }}"
+
+          SIZE=$(du -sh input.mkv | cut -f1)
+          echo "✅ Downloaded: input.mkv ($SIZE)"
+
+      # 5️⃣ Download subtitle (opsional)
+      - name: Download subtitle (if provided)
+        if: ${{ github.event.inputs.subtitle_url != '' }}
+        run: |
+          echo "⬇️ Downloading subtitle from: ${{ github.event.inputs.subtitle_url }}"
+          curl --fail --retry 3 --retry-delay 5 -L \
+            -o subtitle.srt \
+            "${{ github.event.inputs.subtitle_url }}"
+
+          if [ ! -s subtitle.srt ]; then
+            echo "❌ Subtitle file kosong atau gagal didownload!"
+            exit 1
+          fi
+
+          echo "✅ Subtitle downloaded: $(wc -l < subtitle.srt) lines"
+
+      # 6️⃣ Convert MKV → MP4
+      - name: Convert MKV to MP4
+        run: |
+          VIDEO_CODEC="${{ github.event.inputs.video_codec }}"
+          AUDIO_CODEC="${{ github.event.inputs.audio_codec }}"
+          CRF="${{ github.event.inputs.crf }}"
+          BURN="${{ github.event.inputs.burn_subtitle }}"
+          SUB_URL="${{ github.event.inputs.subtitle_url }}"
+          LANG="${{ github.event.inputs.subtitle_language }}"
+          OUTPUT="${{ github.event.inputs.output_name }}.mp4"
+
+          # Build ffmpeg flags
+          VIDEO_FLAGS="-c:v $VIDEO_CODEC"
+          AUDIO_FLAGS="-c:a $AUDIO_CODEC"
+          SUB_FLAGS=""
+
+          # Tambah CRF & preset jika re-encode
+          if [ "$VIDEO_CODEC" = "h264" ]; then
+            VIDEO_FLAGS="-c:v libx264 -crf $CRF -preset fast"
+          elif [ "$VIDEO_CODEC" = "h265" ]; then
+            VIDEO_FLAGS="-c:v libx265 -crf $CRF -preset fast"
+          fi
+
+          # Konversi audio jika dipilih
+          if [ "$AUDIO_CODEC" = "aac" ]; then
+            AUDIO_FLAGS="-c:a aac -b:a 192k"
+          elif [ "$AUDIO_CODEC" = "mp3" ]; then
+            AUDIO_FLAGS="-c:a libmp3lame -b:a 192k"
+          fi
+
+          # Subtitle handling
+          if [ -n "$SUB_URL" ] && [ -f subtitle.srt ]; then
+            if [ "$BURN" = "yes" ]; then
+              # Hardcode (burn) subtitle ke video — butuh re-encode
+              echo "🔥 Mode: Burn subtitle (hardcode)"
+              VIDEO_FLAGS="-c:v libx264 -crf $CRF -preset fast"
+              SUB_FLAGS="-vf subtitles=subtitle.srt"
+            else
+              # Softcode subtitle (embed sebagai track)
+              echo "📦 Mode: Embed subtitle (softcode)"
+              SUB_FLAGS="-i subtitle.srt -c:s mov_text -metadata:s:s:0 language=$LANG -disposition:s:0 default"
+            fi
+          fi
+
+          echo "🎬 Running ffmpeg..."
+          echo "   Video: $VIDEO_FLAGS"
+          echo "   Audio: $AUDIO_FLAGS"
+          echo "   Sub  : $SUB_FLAGS"
+
+          ffmpeg -i input.mkv \
+            $SUB_FLAGS \
+            $VIDEO_FLAGS \
+            $AUDIO_FLAGS \
+            -map 0:v:0 \
+            -map 0:a? \
+            $([ -n "$SUB_URL" ] && [ -f subtitle.srt ] && [ "$BURN" != "yes" ] && echo "-map 1:s:0" || echo "") \
+            -movflags +faststart \
+            -y \
+            "$OUTPUT"
+
+          SIZE=$(du -sh "$OUTPUT" | cut -f1)
+          echo "✅ Converted: $OUTPUT ($SIZE)"
+
+      # 7️⃣ Upload to Google Drive
+      - name: Upload to Google Drive
+        run: |
+          OUTPUT="${{ github.event.inputs.output_name }}.mp4"
+          echo "⬆️ Uploading $OUTPUT to gdrive:/${{ github.event.inputs.drive_path }}/"
+
+          rclone copy "$OUTPUT" \
+            "gdrive:/${{ github.event.inputs.drive_path }}/" \
+            -P \
+            --transfers=${{ github.event.inputs.rclone_transfers }}
+
+          echo "✅ Upload complete"
+
+      # ✅ Telegram SUCCESS
+      - name: Telegram notify SUCCESS
+        if: success()
+        run: |
+          SUB_INFO=""
+          if [ -n "${{ github.event.inputs.subtitle_url }}" ]; then
+            SUB_INFO="%0A📝 Subtitle: <code>${{ github.event.inputs.subtitle_language }}</code> (burn: ${{ github.event.inputs.burn_subtitle }})"
+          fi
+
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="✅ <b>CONVERT SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mp4</code>%0A🎬 Video: <code>${{ github.event.inputs.video_codec }}</code>%0A🔊 Audio: <code>${{ github.event.inputs.audio_codec }}</code>${SUB_INFO}%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
+
+      # ❌ Telegram FAILED
+      - name: Telegram notify FAILED
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="❌ <b>CONVERT FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mp4</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>%0A🎬 Codec: <code>${{ github.event.inputs.video_codec }} / ${{ github.event.inputs.audio_codec }}</code>"
+
+      # 8️⃣ Cleanup
+      - name: Cleanup temp files
+        if: always()
+        run: |
+          rm -f input.mkv subtitle.srt
+          rm -f "${{ github.event.inputs.output_name }}.mp4"
+          echo "🧹 Cleanup done"
