@@ -1,4 +1,4 @@
-name: Add Subtitle to MKV and Upload to Google Drive
+name: Add Subtitle ektern
 on:
   workflow_dispatch:
     inputs:
