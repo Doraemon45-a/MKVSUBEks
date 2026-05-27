@@ -69,17 +69,26 @@ jobs:
       # 6️⃣ Add subtitle track (NO RE-ENCODE)
       - name: Add subtitle to MKV
         run: |
+          # Strip semua whitespace/newline tersembunyi dari inputs
+          LANG=$(echo "${{ github.event.inputs.subtitle_language }}" | tr -d '[:space:]')
+          OUTPUT="${{ github.event.inputs.output_name }}"
+
+          echo "🌐 Language : $LANG"
+          echo "📁 Output   : ${OUTPUT}.mkv"
+
           mkvmerge \
-            -o "${{ github.event.inputs.output_name }}.mkv" \
+            -o "${OUTPUT}.mkv" \
             input.mkv \
-            --language 0:${{ github.event.inputs.subtitle_language }} \
-            --default-track 0:yes \
+            --language "0:${LANG}" \
+            --default-track "0:yes" \
             subtitle.srt
 
       # 7️⃣ Upload to Google Drive
       - name: Upload to Google Drive
         run: |
-          rclone copy "${{ github.event.inputs.output_name }}.mkv" \
+          OUTPUT="${{ github.event.inputs.output_name }}"
+
+          rclone copy "${OUTPUT}.mkv" \
             "gdrive:/${{ github.event.inputs.drive_path }}/" \
             -P \
             --transfers=${{ github.event.inputs.rclone_transfers }}
@@ -106,5 +115,6 @@ jobs:
       - name: Cleanup temp files
         if: always()
         run: |
+          OUTPUT="${{ github.event.inputs.output_name }}"
           rm -f input.mkv subtitle.srt
-          rm -f "${{ github.event.inputs.output_name }}.mkv"
+          rm -f "${OUTPUT}.mkv"
