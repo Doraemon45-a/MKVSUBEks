@@ -13,13 +13,42 @@ on:
         description: "Path folder tujuan di Google Drive"
         required: true
         default: "ConvertedVideos"
-      subtitle_url:
-        description: "URL subtitle dari paste.rs (hasil upload tool)"
+
+      # === SUBTITLE 1 ===
+      subtitle_url_1:
+        description: "URL subtitle 1 dari paste.rs"
         required: true
-      subtitle_language:
-        description: "Kode bahasa subtitle (ind/eng/jpn)"
+      subtitle_language_1:
+        description: "Kode bahasa subtitle 1 (ind/eng/jpn)"
         required: false
         default: "ind"
+      subtitle_name_1:
+        description: "Nama track subtitle 1 (contoh: Indonesian)"
+        required: false
+        default: "Indonesian"
+      subtitle_default_1:
+        description: "Jadikan subtitle 1 sebagai default? (yes/no)"
+        required: false
+        default: "yes"
+
+      # === SUBTITLE 2 (opsional) ===
+      subtitle_url_2:
+        description: "URL subtitle 2 dari paste.rs (kosongkan jika tidak ada)"
+        required: false
+        default: ""
+      subtitle_language_2:
+        description: "Kode bahasa subtitle 2 (ind/eng/jpn)"
+        required: false
+        default: "ind"
+      subtitle_name_2:
+        description: "Nama track subtitle 2 (contoh: Indonesian SDH)"
+        required: false
+        default: "Indonesian SDH"
+      subtitle_default_2:
+        description: "Jadikan subtitle 2 sebagai default? (yes/no)"
+        required: false
+        default: "no"
+
       rclone_transfers:
         description: "Jumlah transfer concurrent rclone"
         required: false
@@ -48,59 +77,108 @@ jobs:
       # 4️⃣ Download MKV
       - name: Download MKV file
         run: |
+          echo "⬇️ Downloading MKV..."
           curl --fail --retry 5 --retry-delay 10 -L \
             -o input.mkv \
             "${{ github.event.inputs.source_url }}"
+          SIZE=$(du -sh input.mkv | cut -f1)
+          echo "✅ Downloaded: input.mkv ($SIZE)"
 
-      # 5️⃣ Download subtitle dari URL (paste.rs)
-      - name: Download subtitle from URL
+      # 5️⃣ Download subtitle 1
+      - name: Download subtitle 1
         run: |
+          echo "⬇️ Downloading subtitle 1..."
           curl --fail --retry 3 --retry-delay 5 -L \
-            -o subtitle.srt \
-            "${{ github.event.inputs.subtitle_url }}"
+            -o subtitle1.srt \
+            "${{ github.event.inputs.subtitle_url_1 }}"
 
-          if [ ! -s subtitle.srt ]; then
-            echo "❌ Subtitle file kosong atau gagal didownload!"
+          if [ ! -s subtitle1.srt ]; then
+            echo "❌ Subtitle 1 kosong atau gagal didownload!"
             exit 1
           fi
+          echo "✅ Subtitle 1 downloaded: $(wc -l < subtitle1.srt) lines"
 
-          echo "✅ Subtitle downloaded: $(wc -l < subtitle.srt) lines"
+      # 6️⃣ Download subtitle 2 (opsional)
+      - name: Download subtitle 2 (if provided)
+        if: ${{ github.event.inputs.subtitle_url_2 != '' }}
+        run: |
+          echo "⬇️ Downloading subtitle 2..."
+          curl --fail --retry 3 --retry-delay 5 -L \
+            -o subtitle2.srt \
+            "${{ github.event.inputs.subtitle_url_2 }}"
 
-      # 6️⃣ Add subtitle track (NO RE-ENCODE)
+          if [ ! -s subtitle2.srt ]; then
+            echo "❌ Subtitle 2 kosong atau gagal didownload!"
+            exit 1
+          fi
+          echo "✅ Subtitle 2 downloaded: $(wc -l < subtitle2.srt) lines"
+
+      # 7️⃣ Add subtitle track(s) — NO RE-ENCODE
       - name: Add subtitle to MKV
         run: |
-          # Strip semua whitespace/newline tersembunyi dari inputs
-          LANG=$(echo "${{ github.event.inputs.subtitle_language }}" | tr -d '[:space:]')
+          # Bersihkan input — hanya huruf, angka, tanda hubung
+          LANG1=$(echo "${{ github.event.inputs.subtitle_language_1 }}" | tr -cd 'a-zA-Z-')
+          LANG2=$(echo "${{ github.event.inputs.subtitle_language_2 }}" | tr -cd 'a-zA-Z-')
+          NAME1="${{ github.event.inputs.subtitle_name_1 }}"
+          NAME2="${{ github.event.inputs.subtitle_name_2 }}"
+          DEF1=$(echo "${{ github.event.inputs.subtitle_default_1 }}" | tr -cd 'a-zA-Z' | tr '[:upper:]' '[:lower:]')
+          DEF2=$(echo "${{ github.event.inputs.subtitle_default_2 }}" | tr -cd 'a-zA-Z' | tr '[:upper:]' '[:lower:]')
           OUTPUT="${{ github.event.inputs.output_name }}"
 
-          echo "🌐 Language : $LANG"
-          echo "📁 Output   : ${OUTPUT}.mkv"
+          echo "📋 Subtitle 1 : [$LANG1] $NAME1 (default: $DEF1)"
 
-          mkvmerge \
-            -o "${OUTPUT}.mkv" \
-            input.mkv \
-            --language "0:${LANG}" \
-            --default-track "0:yes" \
-            subtitle.srt
+          # Bangun perintah mkvmerge
+          if [ -f subtitle2.srt ]; then
+            echo "📋 Subtitle 2 : [$LANG2] $NAME2 (default: $DEF2)"
+            mkvmerge \
+              -o "${OUTPUT}.mkv" \
+              input.mkv \
+              --language "0:${LANG1}" \
+              --track-name "0:${NAME1}" \
+              --default-track "0:${DEF1}" \
+              subtitle1.srt \
+              --language "0:${LANG2}" \
+              --track-name "0:${NAME2}" \
+              --default-track "0:${DEF2}" \
+              subtitle2.srt
+          else
+            echo "ℹ️ Hanya 1 subtitle"
+            mkvmerge \
+              -o "${OUTPUT}.mkv" \
+              input.mkv \
+              --language "0:${LANG1}" \
+              --track-name "0:${NAME1}" \
+              --default-track "0:${DEF1}" \
+              subtitle1.srt
+          fi
 
-      # 7️⃣ Upload to Google Drive
+          SIZE=$(du -sh "${OUTPUT}.mkv" | cut -f1)
+          echo "✅ Done: ${OUTPUT}.mkv ($SIZE)"
+
+      # 8️⃣ Upload to Google Drive
       - name: Upload to Google Drive
         run: |
           OUTPUT="${{ github.event.inputs.output_name }}"
-
+          echo "⬆️ Uploading ${OUTPUT}.mkv..."
           rclone copy "${OUTPUT}.mkv" \
             "gdrive:/${{ github.event.inputs.drive_path }}/" \
             -P \
             --transfers=${{ github.event.inputs.rclone_transfers }}
+          echo "✅ Upload complete"
 
       # ✅ Telegram SUCCESS
       - name: Telegram notify SUCCESS
         if: success()
         run: |
+          SUB2_INFO=""
+          if [ -n "${{ github.event.inputs.subtitle_url_2 }}" ]; then
+            SUB2_INFO="%0A📝 Sub 2: <code>${{ github.event.inputs.subtitle_name_2 }}</code> [${{ github.event.inputs.subtitle_language_2 }}]"
+          fi
+
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TG_CHAT_ID }}" \
             -d parse_mode="HTML" \
-            -d text="✅ <b>SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🔗 Subtitle: <code>${{ github.event.inputs.subtitle_url }}</code>%0A🌐 Language: <code>${{ github.event.inputs.subtitle_language }}</code>%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
+            -d text="✅ <b>SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A📝 Sub 1: <code>${{ github.event.inputs.subtitle_name_1 }}</code> [${{ github.event.inputs.subtitle_language_1 }}]${SUB2_INFO}%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
 
       # ❌ Telegram FAILED
       - name: Telegram notify FAILED
@@ -109,12 +187,13 @@ jobs:
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
             -d chat_id="${{ secrets.TG_CHAT_ID }}" \
             -d parse_mode="HTML" \
-            -d text="❌ <b>FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>%0A📝 Subtitle URL: <code>${{ github.event.inputs.subtitle_url }}</code>"
+            -d text="❌ <b>FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>"
 
-      # 8️⃣ Cleanup
+      # 9️⃣ Cleanup
       - name: Cleanup temp files
         if: always()
         run: |
           OUTPUT="${{ github.event.inputs.output_name }}"
-          rm -f input.mkv subtitle.srt
+          rm -f input.mkv subtitle1.srt subtitle2.srt
           rm -f "${OUTPUT}.mkv"
+          echo "🧹 Cleanup done"
