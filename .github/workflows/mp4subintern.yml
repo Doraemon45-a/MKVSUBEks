@@ -1,0 +1,298 @@
+name: MKV to MP4 sub intern
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "URL file MKV sumber"
+        required: true
+      output_name:
+        description: "Nama file output MP4 (tanpa ekstensi)"
+        required: true
+        default: "TipiStream"
+      drive_path:
+        description: "Path folder tujuan di Google Drive"
+        required: true
+        default: "ConvertedVideos"
+      video_codec:
+        description: "Codec video (copy / h264 / h265)"
+        required: false
+        default: "copy"
+      audio_codec:
+        description: "Codec audio (copy / aac / mp3)"
+        required: false
+        default: "copy"
+      crf:
+        description: "Kualitas video jika re-encode h264/h265 (18=terbaik, 28=terkecil)"
+        required: false
+        default: "23"
+
+      # === SUBTITLE EKSTERNAL (opsional) ===
+      subtitle_url:
+        description: "URL subtitle eksternal dari paste.rs (kosongkan jika pakai track internal)"
+        required: false
+        default: ""
+      subtitle_language:
+        description: "Kode bahasa subtitle eksternal (ind/eng/jpn)"
+        required: false
+        default: "ind"
+      burn_subtitle:
+        description: "Burn subtitle eksternal? (yes = hardcode, no = embed/softcode)"
+        required: false
+        default: "no"
+
+      # === SUBTITLE INTERNAL (dari track MKV) ===
+      burn_internal_subtitle:
+        description: "Burn subtitle dari track internal MKV? (yes/no)"
+        required: false
+        default: "no"
+      internal_subtitle_track:
+        description: "Nomor track subtitle internal yang akan di-burn (0, 1, 2, dst)"
+        required: false
+        default: "0"
+
+      rclone_transfers:
+        description: "Jumlah transfer concurrent rclone"
+        required: false
+        default: "4"
+
+jobs:
+  convert_and_upload:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg rclone curl
+          ffmpeg -version | head -1
+          echo "✅ Dependencies installed"
+
+      # 3️⃣ Setup rclone
+      - name: Setup rclone config
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.RCLONE_CONF_B64 }}" | base64 --decode > ~/.config/rclone/rclone.conf
+          echo "✅ Rclone configured"
+
+      # 4️⃣ Download MKV
+      - name: Download MKV file
+        run: |
+          echo "⬇️ Downloading MKV from: ${{ github.event.inputs.source_url }}"
+          curl --fail --retry 5 --retry-delay 10 -L \
+            -o input.mkv \
+            "${{ github.event.inputs.source_url }}"
+
+          SIZE=$(du -sh input.mkv | cut -f1)
+          echo "✅ Downloaded: input.mkv ($SIZE)"
+
+          # Tampilkan info track yang ada di MKV
+          echo ""
+          echo "📋 Track info:"
+          ffprobe -v quiet -print_format json -show_streams input.mkv \
+            | grep -E '"index"|"codec_type"|"codec_name"|"tags"' | head -60
+
+      # 5️⃣ Download subtitle eksternal (opsional)
+      - name: Download subtitle eksternal (if provided)
+        if: ${{ github.event.inputs.subtitle_url != '' }}
+        run: |
+          echo "⬇️ Downloading subtitle from: ${{ github.event.inputs.subtitle_url }}"
+          curl --fail --retry 3 --retry-delay 5 -L \
+            -o subtitle.srt \
+            "${{ github.event.inputs.subtitle_url }}"
+
+          if [ ! -s subtitle.srt ]; then
+            echo "❌ Subtitle file kosong atau gagal didownload!"
+            exit 1
+          fi
+
+          echo "✅ Subtitle downloaded: $(wc -l < subtitle.srt) lines"
+
+      # 6️⃣ Convert MKV → MP4
+      - name: Convert MKV to MP4
+        run: |
+          VIDEO_CODEC="${{ github.event.inputs.video_codec }}"
+          AUDIO_CODEC="${{ github.event.inputs.audio_codec }}"
+          CRF=$(echo "${{ github.event.inputs.crf }}" | tr -cd '0-9')
+          BURN_EXT=$(echo "${{ github.event.inputs.burn_subtitle }}" | tr -cd 'a-zA-Z' | tr '[:upper:]' '[:lower:]')
+          BURN_INT=$(echo "${{ github.event.inputs.burn_internal_subtitle }}" | tr -cd 'a-zA-Z' | tr '[:upper:]' '[:lower:]')
+          SUB_TRACK=$(echo "${{ github.event.inputs.internal_subtitle_track }}" | tr -cd '0-9')
+          SUB_URL="${{ github.event.inputs.subtitle_url }}"
+          LANG=$(echo "${{ github.event.inputs.subtitle_language }}" | tr -cd 'a-zA-Z-')
+          OUTPUT="${{ github.event.inputs.output_name }}.mp4"
+
+          # Validasi: tidak boleh burn internal dan eksternal sekaligus
+          if [ "$BURN_INT" = "yes" ] && [ "$BURN_EXT" = "yes" ] && [ -n "$SUB_URL" ]; then
+            echo "❌ Tidak bisa burn internal dan eksternal subtitle sekaligus!"
+            echo "   Pilih salah satu: burn_internal_subtitle=yes ATAU burn_subtitle=yes"
+            exit 1
+          fi
+
+          # Build video flags
+          if [ "$VIDEO_CODEC" = "h264" ]; then
+            VIDEO_FLAGS="-c:v libx264 -crf ${CRF} -preset fast"
+          elif [ "$VIDEO_CODEC" = "h265" ]; then
+            VIDEO_FLAGS="-c:v libx265 -crf ${CRF} -preset fast"
+          else
+            VIDEO_FLAGS="-c:v copy"
+          fi
+
+          # Build audio flags
+          if [ "$AUDIO_CODEC" = "aac" ]; then
+            AUDIO_FLAGS="-c:a aac -b:a 192k"
+          elif [ "$AUDIO_CODEC" = "mp3" ]; then
+            AUDIO_FLAGS="-c:a libmp3lame -b:a 192k"
+          else
+            AUDIO_FLAGS="-c:a copy"
+          fi
+
+          # ============================================================
+          # MODE 1: Burn subtitle INTERNAL dari track MKV
+          # ============================================================
+          if [ "$BURN_INT" = "yes" ]; then
+            echo "🔥 Mode: Burn subtitle INTERNAL track ${SUB_TRACK}"
+
+            # Ekstrak dulu subtitle track dari MKV ke file .srt
+            echo "📤 Extracting subtitle track ${SUB_TRACK} from MKV..."
+            ffmpeg -i input.mkv \
+              -map "0:s:${SUB_TRACK}" \
+              -y extracted_sub.srt 2>&1 | tail -5
+
+            if [ ! -s extracted_sub.srt ]; then
+              echo "❌ Gagal ekstrak subtitle track ${SUB_TRACK}!"
+              echo "   Cek nomor track yang tersedia di log 'Track info' di atas."
+              exit 1
+            fi
+
+            echo "✅ Subtitle extracted: $(wc -l < extracted_sub.srt) lines"
+
+            # Burn harus re-encode video
+            VIDEO_FLAGS="-c:v libx264 -crf ${CRF} -preset fast"
+
+            echo "🎬 Running ffmpeg (burn internal sub)..."
+            ffmpeg -i input.mkv \
+              -vf "subtitles=extracted_sub.srt" \
+              ${VIDEO_FLAGS} \
+              ${AUDIO_FLAGS} \
+              -map 0:v:0 \
+              -map 0:a? \
+              -movflags +faststart \
+              -y \
+              "$OUTPUT"
+
+          # ============================================================
+          # MODE 2: Burn subtitle EKSTERNAL (.srt dari paste.rs)
+          # ============================================================
+          elif [ "$BURN_EXT" = "yes" ] && [ -f subtitle.srt ]; then
+            echo "🔥 Mode: Burn subtitle EKSTERNAL (subtitle.srt)"
+
+            # Burn harus re-encode video
+            VIDEO_FLAGS="-c:v libx264 -crf ${CRF} -preset fast"
+
+            echo "🎬 Running ffmpeg (burn external sub)..."
+            ffmpeg -i input.mkv \
+              -vf "subtitles=subtitle.srt" \
+              ${VIDEO_FLAGS} \
+              ${AUDIO_FLAGS} \
+              -map 0:v:0 \
+              -map 0:a? \
+              -movflags +faststart \
+              -y \
+              "$OUTPUT"
+
+          # ============================================================
+          # MODE 3: Embed subtitle EKSTERNAL (softcode)
+          # ============================================================
+          elif [ -f subtitle.srt ]; then
+            echo "📦 Mode: Embed subtitle EKSTERNAL (softcode)"
+
+            echo "🎬 Running ffmpeg (embed external sub)..."
+            ffmpeg -i input.mkv \
+              -i subtitle.srt \
+              ${VIDEO_FLAGS} \
+              ${AUDIO_FLAGS} \
+              -c:s mov_text \
+              -map 0:v:0 \
+              -map 0:a? \
+              -map 1:s:0 \
+              -metadata:s:s:0 language=${LANG} \
+              -disposition:s:0 default \
+              -movflags +faststart \
+              -y \
+              "$OUTPUT"
+
+          # ============================================================
+          # MODE 4: Tanpa subtitle
+          # ============================================================
+          else
+            echo "🎬 Mode: Tanpa subtitle"
+
+            ffmpeg -i input.mkv \
+              ${VIDEO_FLAGS} \
+              ${AUDIO_FLAGS} \
+              -map 0:v:0 \
+              -map 0:a? \
+              -movflags +faststart \
+              -y \
+              "$OUTPUT"
+          fi
+
+          SIZE=$(du -sh "$OUTPUT" | cut -f1)
+          echo "✅ Converted: $OUTPUT ($SIZE)"
+
+      # 7️⃣ Upload to Google Drive
+      - name: Upload to Google Drive
+        run: |
+          OUTPUT="${{ github.event.inputs.output_name }}.mp4"
+          echo "⬆️ Uploading $OUTPUT to gdrive:/${{ github.event.inputs.drive_path }}/"
+
+          rclone copy "$OUTPUT" \
+            "gdrive:/${{ github.event.inputs.drive_path }}/" \
+            -P \
+            --transfers=${{ github.event.inputs.rclone_transfers }}
+
+          echo "✅ Upload complete"
+
+      # ✅ Telegram SUCCESS
+      - name: Telegram notify SUCCESS
+        if: success()
+        run: |
+          BURN_INT="${{ github.event.inputs.burn_internal_subtitle }}"
+          BURN_EXT="${{ github.event.inputs.burn_subtitle }}"
+          SUB_URL="${{ github.event.inputs.subtitle_url }}"
+          TRACK="${{ github.event.inputs.internal_subtitle_track }}"
+
+          if [ "$BURN_INT" = "yes" ]; then
+            SUB_INFO="%0A🔥 Subtitle: Burn internal track ${TRACK}"
+          elif [ -n "$SUB_URL" ] && [ "$BURN_EXT" = "yes" ]; then
+            SUB_INFO="%0A🔥 Subtitle: Burn eksternal (hardcode)"
+          elif [ -n "$SUB_URL" ]; then
+            SUB_INFO="%0A📦 Subtitle: Embed eksternal [${{ github.event.inputs.subtitle_language }}]"
+          else
+            SUB_INFO="%0AⓂ️ Subtitle: Tidak ada"
+          fi
+
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="✅ <b>CONVERT SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mp4</code>%0A🎬 Video: <code>${{ github.event.inputs.video_codec }}</code>%0A🔊 Audio: <code>${{ github.event.inputs.audio_codec }}</code>${SUB_INFO}%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
+
+      # ❌ Telegram FAILED
+      - name: Telegram notify FAILED
+        if: failure()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
+            -d parse_mode="HTML" \
+            -d text="❌ <b>CONVERT FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mp4</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>%0A🎬 Codec: <code>${{ github.event.inputs.video_codec }} / ${{ github.event.inputs.audio_codec }}</code>"
+
+      # 8️⃣ Cleanup
+      - name: Cleanup temp files
+        if: always()
+        run: |
+          rm -f input.mkv subtitle.srt extracted_sub.srt
+          rm -f "${{ github.event.inputs.output_name }}.mp4"
+          echo "🧹 Cleanup done"
