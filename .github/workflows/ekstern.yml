@@ -1,137 +1,701 @@
-name: Add Subtitle Ektern
+name: Add Subtitle Ekstern
+
 on:
   workflow_dispatch:
     inputs:
+
+      # ============================================================
+      # SOURCE MKV
+      # ============================================================
+
       source_url:
         description: "URL file MKV"
         required: true
+
       output_name:
         description: "Nama file output MKV (tanpa ekstensi)"
         required: true
         default: "TipiStream"
+
       drive_path:
         description: "Path folder tujuan di Google Drive"
         required: true
         default: "ConvertedVideos"
 
-      # === SUBTITLE 1 ===
+
+      # ============================================================
+      # SUBTITLE 1
+      # ============================================================
+
       subtitle_url_1:
-        description: "URL subtitle 1 dari paste.rs"
+        description: "Direct URL subtitle 1 dari Uguu"
         required: true
+
       subtitle_language_1:
         description: "Kode bahasa subtitle 1 (ind/eng/jpn)"
         required: false
         default: "ind"
+
       subtitle_name_1:
-        description: "Nama track subtitle 1 (contoh: Indonesian)"
+        description: "Nama track subtitle 1"
         required: false
         default: "Indonesian"
+
       subtitle_default_1:
         description: "Jadikan subtitle 1 sebagai default? (yes/no)"
         required: false
         default: "yes"
 
-      # === SUBTITLE 2 (opsional) ===
+
+      # ============================================================
+      # SUBTITLE 2
+      # ============================================================
+
       subtitle_url_2:
-        description: "URL subtitle 2 dari paste.rs (kosongkan jika tidak ada)"
+        description: "Direct URL subtitle 2 dari Uguu (kosongkan jika tidak ada)"
         required: false
         default: ""
+
       subtitle_language_2:
         description: "Kode bahasa subtitle 2 (ind/eng/jpn)"
         required: false
         default: "ind"
+
       subtitle_name_2:
-        description: "Nama track subtitle 2 (contoh: Indonesian SDH)"
+        description: "Nama track subtitle 2"
         required: false
         default: "Indonesian SDH"
+
       subtitle_default_2:
         description: "Jadikan subtitle 2 sebagai default? (yes/no)"
         required: false
         default: "no"
+
+
+      # ============================================================
+      # RCLONE
+      # ============================================================
 
       rclone_transfers:
         description: "Jumlah transfer concurrent rclone"
         required: false
         default: "4"
 
+
 jobs:
+
   add_subtitle_and_upload:
+
     runs-on: ubuntu-latest
+
+
     steps:
-      # 1️⃣ Checkout repository
+
+      # ============================================================
+      # 1. CHECKOUT
+      # ============================================================
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Install dependencies
+
+      # ============================================================
+      # 2. INSTALL DEPENDENCIES
+      # ============================================================
+
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y mkvtoolnix rclone curl
+          echo "📦 Installing dependencies..."
 
-      # 3️⃣ Setup rclone
+          sudo apt-get update
+
+          sudo apt-get install -y \
+            mkvtoolnix \
+            rclone \
+            curl \
+            uchardet \
+            file \
+            iconv
+
+          echo "✅ Dependencies installed"
+
+
+      # ============================================================
+      # 3. SETUP RCLONE
+      # ============================================================
+
       - name: Setup rclone config
         run: |
-          mkdir -p ~/.config/rclone
-          echo "${{ secrets.RCLONE_CONF_B64 }}" | base64 --decode > ~/.config/rclone/rclone.conf
+          echo "⚙️ Setting up rclone..."
 
-      # 4️⃣ Download MKV
+          mkdir -p ~/.config/rclone
+
+          echo "${RCLONE_CONF_B64}" \
+            | base64 --decode \
+            > ~/.config/rclone/rclone.conf
+
+          chmod 600 ~/.config/rclone/rclone.conf
+
+          echo "✅ rclone configured"
+
+        env:
+          RCLONE_CONF_B64: ${{ secrets.RCLONE_CONF_B64 }}
+
+
+      # ============================================================
+      # 4. PREPARE OUTPUT NAME
+      # ============================================================
+
+      - name: Prepare output name
+        run: |
+
+          OUTPUT="${OUTPUT_RAW}"
+
+          echo "Original output name:"
+          echo "$OUTPUT"
+
+          # Hanya izinkan:
+          # huruf
+          # angka
+          # titik
+          # underscore
+          # tanda hubung
+
+          OUTPUT=$(echo "$OUTPUT" |
+            tr -cd 'a-zA-Z0-9._-')
+
+          if [ -z "$OUTPUT" ]; then
+            echo "❌ output_name tidak valid!"
+            exit 1
+          fi
+
+          echo "Sanitized output name:"
+          echo "$OUTPUT"
+
+          echo "OUTPUT_NAME=$OUTPUT" >> "$GITHUB_ENV"
+
+        env:
+          OUTPUT_RAW: ${{ github.event.inputs.output_name }}
+
+
+      # ============================================================
+      # 5. DOWNLOAD MKV
+      # ============================================================
+
       - name: Download MKV file
         run: |
-          echo "⬇️ Downloading MKV..."
-          curl --fail --retry 5 --retry-delay 10 -L \
-            -o input.mkv \
-            "${{ github.event.inputs.source_url }}"
-          SIZE=$(du -sh input.mkv | cut -f1)
-          echo "✅ Downloaded: input.mkv ($SIZE)"
 
-      # 5️⃣ Download subtitle 1
+          echo "========================================"
+          echo "⬇️ DOWNLOADING MKV"
+          echo "========================================"
+
+          curl \
+            --fail \
+            --location \
+            --retry 5 \
+            --retry-delay 10 \
+            --connect-timeout 30 \
+            --max-time 0 \
+            --output input.mkv \
+            "$SOURCE_URL"
+
+          if [ ! -s input.mkv ]; then
+            echo "❌ input.mkv kosong atau gagal didownload!"
+            exit 1
+          fi
+
+          SIZE=$(du -sh input.mkv | cut -f1)
+
+          echo "✅ MKV downloaded"
+          echo "📦 Size: $SIZE"
+
+        env:
+          SOURCE_URL: ${{ github.event.inputs.source_url }}
+
+
+      # ============================================================
+      # 6. DOWNLOAD SUBTITLE 1
+      # ============================================================
+
       - name: Download subtitle 1
         run: |
-          echo "⬇️ Downloading subtitle 1..."
-          curl --fail --retry 3 --retry-delay 5 -L \
-            -o subtitle1.srt \
-            "${{ github.event.inputs.subtitle_url_1 }}"
+
+          echo "========================================"
+          echo "⬇️ DOWNLOADING SUBTITLE 1"
+          echo "========================================"
+
+          echo "URL:"
+          echo "$SUBTITLE_URL"
+
+          curl \
+            --fail \
+            --location \
+            --retry 5 \
+            --retry-delay 5 \
+            --connect-timeout 30 \
+            --max-time 120 \
+            --output subtitle1.srt \
+            "$SUBTITLE_URL"
 
           if [ ! -s subtitle1.srt ]; then
-            echo "❌ Subtitle 1 kosong atau gagal didownload!"
+            echo "❌ subtitle1.srt kosong!"
             exit 1
           fi
-          echo "✅ Subtitle 1 downloaded: $(wc -l < subtitle1.srt) lines"
 
-      # 6️⃣ Download subtitle 2 (opsional)
-      - name: Download subtitle 2 (if provided)
+          SIZE=$(du -h subtitle1.srt |
+            cut -f1)
+
+          LINES=$(wc -l < subtitle1.srt)
+
+          echo "✅ Subtitle 1 downloaded"
+          echo "📦 Size : $SIZE"
+          echo "📝 Lines: $LINES"
+
+        env:
+          SUBTITLE_URL: ${{ github.event.inputs.subtitle_url_1 }}
+
+
+      # ============================================================
+      # 7. DOWNLOAD SUBTITLE 2
+      # ============================================================
+
+      - name: Download subtitle 2
         if: ${{ github.event.inputs.subtitle_url_2 != '' }}
         run: |
-          echo "⬇️ Downloading subtitle 2..."
-          curl --fail --retry 3 --retry-delay 5 -L \
-            -o subtitle2.srt \
-            "${{ github.event.inputs.subtitle_url_2 }}"
+
+          echo "========================================"
+          echo "⬇️ DOWNLOADING SUBTITLE 2"
+          echo "========================================"
+
+          echo "URL:"
+          echo "$SUBTITLE_URL"
+
+          curl \
+            --fail \
+            --location \
+            --retry 5 \
+            --retry-delay 5 \
+            --connect-timeout 30 \
+            --max-time 120 \
+            --output subtitle2.srt \
+            "$SUBTITLE_URL"
 
           if [ ! -s subtitle2.srt ]; then
-            echo "❌ Subtitle 2 kosong atau gagal didownload!"
+            echo "❌ subtitle2.srt kosong!"
             exit 1
           fi
-          echo "✅ Subtitle 2 downloaded: $(wc -l < subtitle2.srt) lines"
 
-      # 7️⃣ Add subtitle track(s) — NO RE-ENCODE
+          SIZE=$(du -h subtitle2.srt |
+            cut -f1)
+
+          LINES=$(wc -l < subtitle2.srt)
+
+          echo "✅ Subtitle 2 downloaded"
+          echo "📦 Size : $SIZE"
+          echo "📝 Lines: $LINES"
+
+        env:
+          SUBTITLE_URL: ${{ github.event.inputs.subtitle_url_2 }}
+
+
+      # ============================================================
+      # 8. CHECK FILES
+      # ============================================================
+
+      - name: Check downloaded files
+        run: |
+
+          echo "========================================"
+          echo "🔎 CHECKING DOWNLOADED FILES"
+          echo "========================================"
+
+          echo ""
+          echo "MKV:"
+          ls -lh input.mkv
+
+          echo ""
+          echo "Subtitle 1:"
+          ls -lh subtitle1.srt
+
+          if [ -f subtitle2.srt ]; then
+            echo ""
+            echo "Subtitle 2:"
+            ls -lh subtitle2.srt
+          else
+            echo ""
+            echo "ℹ️ Subtitle 2 tidak digunakan"
+          fi
+
+
+      # ============================================================
+      # 9. NORMALIZE SUBTITLE ENCODING
+      # ============================================================
+
+      - name: Normalize subtitle encoding
+        run: |
+
+          echo "========================================"
+          echo "🔤 CHECKING SUBTITLE ENCODING"
+          echo "========================================"
+
+
+          normalize_subtitle() {
+
+            INPUT="$1"
+            OUTPUT="$2"
+
+
+            echo ""
+            echo "----------------------------------------"
+            echo "📄 File: $INPUT"
+            echo "----------------------------------------"
+
+
+            if [ ! -s "$INPUT" ]; then
+              echo "❌ File tidak ditemukan atau kosong:"
+              echo "$INPUT"
+              exit 1
+            fi
+
+
+            # --------------------------------------------------------
+            # Coba cek UTF-8
+            # --------------------------------------------------------
+
+            if iconv \
+              -f UTF-8 \
+              -t UTF-8 \
+              "$INPUT" \
+              > /dev/null 2>&1
+            then
+
+              echo "✅ Encoding sudah valid UTF-8"
+
+              cp "$INPUT" "$OUTPUT"
+
+              return 0
+
+            fi
+
+
+            echo "⚠️ File bukan UTF-8 valid"
+
+
+            # --------------------------------------------------------
+            # Deteksi encoding menggunakan uchardet
+            # --------------------------------------------------------
+
+            DETECTED=""
+
+            if command -v uchardet >/dev/null 2>&1; then
+
+              DETECTED=$(uchardet "$INPUT" 2>/dev/null || true)
+
+            fi
+
+
+            echo "🔍 Detected encoding: ${DETECTED:-unknown}"
+
+
+            DETECTED_LOWER=$(echo "$DETECTED" |
+              tr '[:upper:]' '[:lower:]')
+
+
+            # --------------------------------------------------------
+            # UTF-8
+            # --------------------------------------------------------
+
+            case "$DETECTED_LOWER" in
+
+              utf-8|utf8)
+
+                echo "➡️ Converting UTF-8 → UTF-8"
+
+                iconv \
+                  -f UTF-8 \
+                  -t UTF-8 \
+                  "$INPUT" \
+                  > "$OUTPUT"
+
+                ;;
+
+
+              # ------------------------------------------------------
+              # Windows-1252
+              # ------------------------------------------------------
+
+              windows-1252|cp1252)
+
+                echo "➡️ Converting Windows-1252 → UTF-8"
+
+                iconv \
+                  -f WINDOWS-1252 \
+                  -t UTF-8 \
+                  "$INPUT" \
+                  > "$OUTPUT"
+
+                ;;
+
+
+              # ------------------------------------------------------
+              # ISO-8859-1
+              # ------------------------------------------------------
+
+              iso-8859-1|iso8859-1|latin1)
+
+                echo "➡️ Converting ISO-8859-1 → UTF-8"
+
+                iconv \
+                  -f ISO-8859-1 \
+                  -t UTF-8 \
+                  "$INPUT" \
+                  > "$OUTPUT"
+
+                ;;
+
+
+              # ------------------------------------------------------
+              # ISO-8859-15
+              # ------------------------------------------------------
+
+              iso-8859-15|iso8859-15|latin9)
+
+                echo "➡️ Converting ISO-8859-15 → UTF-8"
+
+                iconv \
+                  -f ISO-8859-15 \
+                  -t UTF-8 \
+                  "$INPUT" \
+                  > "$OUTPUT"
+
+                ;;
+
+
+              # ------------------------------------------------------
+              # WINDOWS-1250
+              # ------------------------------------------------------
+
+              windows-1250|cp1250)
+
+                echo "➡️ Converting Windows-1250 → UTF-8"
+
+                iconv \
+                  -f WINDOWS-1250 \
+                  -t UTF-8 \
+                  "$INPUT" \
+                  > "$OUTPUT"
+
+                ;;
+
+
+              # ------------------------------------------------------
+              # UNKNOWN
+              # ------------------------------------------------------
+
+              *)
+
+                echo "⚠️ Encoding tidak diketahui"
+
+                echo "➡️ Mencoba Windows-1252..."
+
+                if iconv \
+                  -f WINDOWS-1252 \
+                  -t UTF-8 \
+                  "$INPUT" \
+                  > "$OUTPUT" 2>/dev/null
+                then
+
+                  echo "✅ Windows-1252 conversion berhasil"
+
+                else
+
+                  echo "❌ Windows-1252 conversion gagal"
+
+                  echo "➡️ Mencoba ISO-8859-1..."
+
+                  if iconv \
+                    -f ISO-8859-1 \
+                    -t UTF-8 \
+                    "$INPUT" \
+                    > "$OUTPUT" 2>/dev/null
+                  then
+
+                    echo "✅ ISO-8859-1 conversion berhasil"
+
+                  else
+
+                    echo "❌ Tidak dapat mengkonversi subtitle"
+
+                    exit 1
+
+                  fi
+
+                fi
+
+                ;;
+
+            esac
+
+
+            # --------------------------------------------------------
+            # Validasi hasil
+            # --------------------------------------------------------
+
+            if ! iconv \
+              -f UTF-8 \
+              -t UTF-8 \
+              "$OUTPUT" \
+              > /dev/null 2>&1
+            then
+
+              echo "❌ Hasil conversion bukan UTF-8 valid"
+
+              exit 1
+
+            fi
+
+
+            if [ ! -s "$OUTPUT" ]; then
+
+              echo "❌ Output subtitle kosong"
+
+              exit 1
+
+            fi
+
+
+            echo "✅ Subtitle normalized:"
+            echo "$OUTPUT"
+
+          }
+
+
+          # ==========================================================
+          # Subtitle 1
+          # ==========================================================
+
+          normalize_subtitle \
+            subtitle1.srt \
+            subtitle1_utf8.srt
+
+          mv \
+            subtitle1_utf8.srt \
+            subtitle1.srt
+
+
+          # ==========================================================
+          # Subtitle 2
+          # ==========================================================
+
+          if [ -f subtitle2.srt ]; then
+
+            normalize_subtitle \
+              subtitle2.srt \
+              subtitle2_utf8.srt
+
+            mv \
+              subtitle2_utf8.srt \
+              subtitle2.srt
+
+          fi
+
+
+          echo ""
+          echo "========================================"
+          echo "✅ ALL SUBTITLES ARE UTF-8"
+          echo "========================================"
+
+
+      # ============================================================
+      # 10. ADD SUBTITLE TO MKV
+      # ============================================================
+
       - name: Add subtitle to MKV
         run: |
-          # Bersihkan input — hanya huruf, angka, tanda hubung
-          LANG1=$(echo "${{ github.event.inputs.subtitle_language_1 }}" | tr -cd 'a-zA-Z-')
-          LANG2=$(echo "${{ github.event.inputs.subtitle_language_2 }}" | tr -cd 'a-zA-Z-')
-          NAME1="${{ github.event.inputs.subtitle_name_1 }}"
-          NAME2="${{ github.event.inputs.subtitle_name_2 }}"
-          DEF1=$(echo "${{ github.event.inputs.subtitle_default_1 }}" | tr -cd 'a-zA-Z' | tr '[:upper:]' '[:lower:]')
-          DEF2=$(echo "${{ github.event.inputs.subtitle_default_2 }}" | tr -cd 'a-zA-Z' | tr '[:upper:]' '[:lower:]')
-          OUTPUT="${{ github.event.inputs.output_name }}"
 
-          echo "📋 Subtitle 1 : [$LANG1] $NAME1 (default: $DEF1)"
+          echo "========================================"
+          echo "🎬 MUXING SUBTITLE INTO MKV"
+          echo "========================================"
 
-          # Bangun perintah mkvmerge
+
+          # ----------------------------------------------------------
+          # LANGUAGE
+          # ----------------------------------------------------------
+
+          LANG1=$(echo "$SUB_LANGUAGE_1" |
+            tr -cd 'a-zA-Z-')
+
+          LANG2=$(echo "$SUB_LANGUAGE_2" |
+            tr -cd 'a-zA-Z-')
+
+
+          # ----------------------------------------------------------
+          # TRACK NAME
+          # ----------------------------------------------------------
+
+          NAME1="$SUB_NAME_1"
+          NAME2="$SUB_NAME_2"
+
+
+          # ----------------------------------------------------------
+          # DEFAULT
+          # ----------------------------------------------------------
+
+          DEF1=$(echo "$SUB_DEFAULT_1" |
+            tr -cd 'a-zA-Z' |
+            tr '[:upper:]' '[:lower:]')
+
+          DEF2=$(echo "$SUB_DEFAULT_2" |
+            tr -cd 'a-zA-Z' |
+            tr '[:upper:]' '[:lower:]')
+
+
+          # ----------------------------------------------------------
+          # Validate default value
+          # ----------------------------------------------------------
+
+          if [ "$DEF1" != "yes" ] &&
+             [ "$DEF1" != "no" ]; then
+
+            echo "❌ subtitle_default_1 harus yes/no"
+
+            exit 1
+
+          fi
+
+
+          if [ "$DEF2" != "yes" ] &&
+             [ "$DEF2" != "no" ]; then
+
+            echo "❌ subtitle_default_2 harus yes/no"
+
+            exit 1
+
+          fi
+
+
+          echo ""
+          echo "Subtitle 1:"
+          echo "Language : $LANG1"
+          echo "Name     : $NAME1"
+          echo "Default  : $DEF1"
+
+
+          # ==========================================================
+          # Subtitle 2
+          # ==========================================================
+
           if [ -f subtitle2.srt ]; then
-            echo "📋 Subtitle 2 : [$LANG2] $NAME2 (default: $DEF2)"
+
+            echo ""
+            echo "Subtitle 2:"
+            echo "Language : $LANG2"
+            echo "Name     : $NAME2"
+            echo "Default  : $DEF2"
+
+
             mkvmerge \
-              -o "${OUTPUT}.mkv" \
+              -o "${OUTPUT_NAME}.mkv" \
               input.mkv \
               --language "0:${LANG1}" \
               --track-name "0:${NAME1}" \
@@ -141,59 +705,319 @@ jobs:
               --track-name "0:${NAME2}" \
               --default-track "0:${DEF2}" \
               subtitle2.srt
+
+
+          # ==========================================================
+          # Subtitle 1 only
+          # ==========================================================
+
           else
+
+            echo ""
             echo "ℹ️ Hanya 1 subtitle"
+
+
             mkvmerge \
-              -o "${OUTPUT}.mkv" \
+              -o "${OUTPUT_NAME}.mkv" \
               input.mkv \
               --language "0:${LANG1}" \
               --track-name "0:${NAME1}" \
               --default-track "0:${DEF1}" \
               subtitle1.srt
+
           fi
 
-          SIZE=$(du -sh "${OUTPUT}.mkv" | cut -f1)
-          echo "✅ Done: ${OUTPUT}.mkv ($SIZE)"
 
-      # 8️⃣ Upload to Google Drive
+          # ==========================================================
+          # Validate output
+          # ==========================================================
+
+          if [ ! -s "${OUTPUT_NAME}.mkv" ]; then
+
+            echo "❌ Output MKV tidak berhasil dibuat!"
+
+            exit 1
+
+          fi
+
+
+          SIZE=$(du -sh "${OUTPUT_NAME}.mkv" |
+            cut -f1)
+
+
+          echo ""
+          echo "========================================"
+          echo "✅ MUXING COMPLETE"
+          echo "========================================"
+          echo "📁 File : ${OUTPUT_NAME}.mkv"
+          echo "📦 Size : $SIZE"
+          echo "========================================"
+
+
+        env:
+
+          SUB_LANGUAGE_1:
+            ${{ github.event.inputs.subtitle_language_1 }}
+
+          SUB_LANGUAGE_2:
+            ${{ github.event.inputs.subtitle_language_2 }}
+
+          SUB_NAME_1:
+            ${{ github.event.inputs.subtitle_name_1 }}
+
+          SUB_NAME_2:
+            ${{ github.event.inputs.subtitle_name_2 }}
+
+          SUB_DEFAULT_1:
+            ${{ github.event.inputs.subtitle_default_1 }}
+
+          SUB_DEFAULT_2:
+            ${{ github.event.inputs.subtitle_default_2 }}
+
+
+      # ============================================================
+      # 11. VERIFY MKV
+      # ============================================================
+
+      - name: Verify output MKV
+        run: |
+
+          echo "========================================"
+          echo "🔎 VERIFYING OUTPUT"
+          echo "========================================"
+
+          if [ ! -f "${OUTPUT_NAME}.mkv" ]; then
+
+            echo "❌ Output tidak ditemukan!"
+
+            exit 1
+
+          fi
+
+
+          if [ ! -s "${OUTPUT_NAME}.mkv" ]; then
+
+            echo "❌ Output kosong!"
+
+            exit 1
+
+          fi
+
+
+          echo "File:"
+          ls -lh "${OUTPUT_NAME}.mkv"
+
+
+          echo ""
+          echo "Tracks:"
+
+          mkvmerge \
+            -J \
+            "${OUTPUT_NAME}.mkv" \
+            > output_info.json
+
+
+          python3 - <<'PY'
+          import json
+
+          with open("output_info.json", "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          tracks = data.get("tracks", [])
+
+          print()
+
+          for track in tracks:
+              print(
+                  f"Track {track.get('id')}: "
+                  f"{track.get('type')} - "
+                  f"{track.get('codec')}"
+              )
+          PY
+
+
+          echo ""
+          echo "✅ Output verification complete"
+
+
+      # ============================================================
+      # 12. UPLOAD TO GOOGLE DRIVE
+      # ============================================================
+
       - name: Upload to Google Drive
         run: |
-          OUTPUT="${{ github.event.inputs.output_name }}"
-          echo "⬆️ Uploading ${OUTPUT}.mkv..."
-          rclone copy "${OUTPUT}.mkv" \
-            "gdrive:/${{ github.event.inputs.drive_path }}/" \
-            -P \
-            --transfers=${{ github.event.inputs.rclone_transfers }}
-          echo "✅ Upload complete"
 
-      # ✅ Telegram SUCCESS
+          echo "========================================"
+          echo "⬆️ UPLOADING TO GOOGLE DRIVE"
+          echo "========================================"
+
+          echo "File:"
+          echo "${OUTPUT_NAME}.mkv"
+
+          echo ""
+          echo "Destination:"
+          echo "gdrive:/${DRIVE_PATH}/"
+
+
+          rclone copy \
+            "${OUTPUT_NAME}.mkv" \
+            "gdrive:/${DRIVE_PATH}/" \
+            --transfers="${RCLONE_TRANSFERS}" \
+            --checkers=8 \
+            --stats=30s \
+            -P
+
+
+          echo ""
+          echo "========================================"
+          echo "✅ GOOGLE DRIVE UPLOAD COMPLETE"
+          echo "========================================"
+
+        env:
+
+          DRIVE_PATH:
+            ${{ github.event.inputs.drive_path }}
+
+          RCLONE_TRANSFERS:
+            ${{ github.event.inputs.rclone_transfers }}
+
+
+      # ============================================================
+      # 13. TELEGRAM SUCCESS
+      # ============================================================
+
       - name: Telegram notify SUCCESS
         if: success()
         run: |
+
           SUB2_INFO=""
-          if [ -n "${{ github.event.inputs.subtitle_url_2 }}" ]; then
-            SUB2_INFO="%0A📝 Sub 2: <code>${{ github.event.inputs.subtitle_name_2 }}</code> [${{ github.event.inputs.subtitle_language_2 }}]"
+
+          if [ -n "$SUBTITLE_URL_2" ]; then
+
+            SUB2_INFO="
+          📝 Sub 2: ${SUBTITLE_NAME_2} [${SUBTITLE_LANGUAGE_2}]"
+
           fi
 
-          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
-            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
-            -d parse_mode="HTML" \
-            -d text="✅ <b>SUCCESS</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A📝 Sub 1: <code>${{ github.event.inputs.subtitle_name_1 }}</code> [${{ github.event.inputs.subtitle_language_1 }}]${SUB2_INFO}%0A📂 Drive: <code>${{ github.event.inputs.drive_path }}</code>"
 
-      # ❌ Telegram FAILED
+          MESSAGE="\
+          ✅ SUCCESS
+
+          📁 File:
+          ${OUTPUT_NAME}.mkv
+
+          📝 Sub 1:
+          ${SUBTITLE_NAME_1} [${SUBTITLE_LANGUAGE_1}]
+          ${SUB2_INFO}
+
+          📂 Drive:
+          ${DRIVE_PATH}
+          "
+
+
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --request POST \
+            "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_CHAT_ID}" \
+            --data-urlencode "text=${MESSAGE}"
+
+
+          echo "✅ Telegram success notification sent"
+
+        env:
+
+          TG_BOT_TOKEN:
+            ${{ secrets.TG_BOT_TOKEN }}
+
+          TG_CHAT_ID:
+            ${{ secrets.TG_CHAT_ID }}
+
+          SUBTITLE_URL_2:
+            ${{ github.event.inputs.subtitle_url_2 }}
+
+          SUBTITLE_NAME_1:
+            ${{ github.event.inputs.subtitle_name_1 }}
+
+          SUBTITLE_NAME_2:
+            ${{ github.event.inputs.subtitle_name_2 }}
+
+          SUBTITLE_LANGUAGE_1:
+            ${{ github.event.inputs.subtitle_language_1 }}
+
+          SUBTITLE_LANGUAGE_2:
+            ${{ github.event.inputs.subtitle_language_2 }}
+
+          DRIVE_PATH:
+            ${{ github.event.inputs.drive_path }}
+
+
+      # ============================================================
+      # 14. TELEGRAM FAILED
+      # ============================================================
+
       - name: Telegram notify FAILED
         if: failure()
         run: |
-          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage" \
-            -d chat_id="${{ secrets.TG_CHAT_ID }}" \
-            -d parse_mode="HTML" \
-            -d text="❌ <b>FAILED</b>%0A📁 File: <code>${{ github.event.inputs.output_name }}.mkv</code>%0A🔗 Source: <code>${{ github.event.inputs.source_url }}</code>"
 
-      # 9️⃣ Cleanup
+          MESSAGE="\
+          ❌ FAILED
+
+          📁 File:
+          ${OUTPUT_NAME}.mkv
+
+          🔗 Source:
+          ${SOURCE_URL}
+          "
+
+
+          curl \
+            --silent \
+            --show-error \
+            --request POST \
+            "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_CHAT_ID}" \
+            --data-urlencode "text=${MESSAGE}"
+
+
+          echo "❌ Telegram failure notification sent"
+
+        env:
+
+          TG_BOT_TOKEN:
+            ${{ secrets.TG_BOT_TOKEN }}
+
+          TG_CHAT_ID:
+            ${{ secrets.TG_CHAT_ID }}
+
+          SOURCE_URL:
+            ${{ github.event.inputs.source_url }}
+
+
+      # ============================================================
+      # 15. CLEANUP
+      # ============================================================
+
       - name: Cleanup temp files
         if: always()
         run: |
-          OUTPUT="${{ github.event.inputs.output_name }}"
-          rm -f input.mkv subtitle1.srt subtitle2.srt
-          rm -f "${OUTPUT}.mkv"
-          echo "🧹 Cleanup done"
+
+          echo "========================================"
+          echo "🧹 CLEANUP"
+          echo "========================================"
+
+
+          rm -f input.mkv
+
+          rm -f subtitle1.srt
+
+          rm -f subtitle2.srt
+
+          rm -f output_info.json
+
+          rm -f "${OUTPUT_NAME}.mkv"
+
+
+          echo "✅ Cleanup done"
