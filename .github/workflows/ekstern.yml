@@ -119,7 +119,7 @@ jobs:
 
           echo ""
           echo "========================================"
-          echo "🔎 CHECKING REQUIRED COMMANDS"
+          echo "🔎 CHECKING COMMANDS"
           echo "========================================"
 
           command -v mkvmerge
@@ -129,20 +129,18 @@ jobs:
           command -v iconv
 
           echo ""
-          echo "Versions:"
+          echo "========================================"
+          echo "📌 VERSIONS"
+          echo "========================================"
 
           mkvmerge --version | head -n 1
-
           rclone version | head -n 1
-
           curl --version | head -n 1
-
           uchardet --version || true
-
           iconv --version | head -n 1
 
           echo ""
-          echo "✅ Dependencies installed successfully"
+          echo "✅ Dependencies ready"
 
 
       # ============================================================
@@ -158,16 +156,15 @@ jobs:
 
           mkdir -p ~/.config/rclone
 
-          echo "${RCLONE_CONF_B64}" |
-            base64 --decode |
-            tee ~/.config/rclone/rclone.conf > /dev/null
+          echo "${RCLONE_CONF_B64}" \
+            | base64 --decode \
+            > ~/.config/rclone/rclone.conf
 
           chmod 600 ~/.config/rclone/rclone.conf
 
-          echo "✅ rclone configured"
+          echo "✅ rclone config ready"
 
         env:
-
           RCLONE_CONF_B64: ${{ secrets.RCLONE_CONF_B64 }}
 
 
@@ -187,22 +184,12 @@ jobs:
           echo "Original:"
           echo "$OUTPUT"
 
-          # Izinkan:
-          # huruf
-          # angka
-          # titik
-          # underscore
-          # tanda hubung
-
-          OUTPUT=$(echo "$OUTPUT" |
-            tr -cd 'a-zA-Z0-9._-')
+          OUTPUT=$(echo "$OUTPUT" \
+            | tr -cd 'a-zA-Z0-9._-')
 
           if [ -z "$OUTPUT" ]; then
-
             echo "❌ output_name tidak valid!"
-
             exit 1
-
           fi
 
           echo "Sanitized:"
@@ -211,7 +198,6 @@ jobs:
           echo "OUTPUT_NAME=$OUTPUT" >> "$GITHUB_ENV"
 
         env:
-
           OUTPUT_RAW: ${{ github.event.inputs.output_name }}
 
 
@@ -226,7 +212,7 @@ jobs:
           echo "⬇️ DOWNLOADING MKV"
           echo "========================================"
 
-          echo "Source URL:"
+          echo "Source:"
           echo "$SOURCE_URL"
 
           curl \
@@ -235,27 +221,21 @@ jobs:
             --retry 5 \
             --retry-delay 10 \
             --connect-timeout 30 \
-            --max-time 0 \
             --output input.mkv \
             "$SOURCE_URL"
 
           if [ ! -s input.mkv ]; then
-
             echo "❌ input.mkv kosong atau gagal didownload!"
-
             exit 1
-
           fi
 
-          SIZE=$(du -sh input.mkv |
-            cut -f1)
+          SIZE=$(du -sh input.mkv | cut -f1)
 
           echo ""
           echo "✅ MKV downloaded"
           echo "📦 Size: $SIZE"
 
         env:
-
           SOURCE_URL: ${{ github.event.inputs.source_url }}
 
 
@@ -284,16 +264,11 @@ jobs:
             "$SUBTITLE_URL"
 
           if [ ! -s subtitle1.srt ]; then
-
             echo "❌ subtitle1.srt kosong!"
-
             exit 1
-
           fi
 
-          SIZE=$(du -h subtitle1.srt |
-            cut -f1)
-
+          SIZE=$(du -h subtitle1.srt | cut -f1)
           LINES=$(wc -l < subtitle1.srt)
 
           echo ""
@@ -302,7 +277,6 @@ jobs:
           echo "📝 Lines: $LINES"
 
         env:
-
           SUBTITLE_URL: ${{ github.event.inputs.subtitle_url_1 }}
 
 
@@ -332,16 +306,11 @@ jobs:
             "$SUBTITLE_URL"
 
           if [ ! -s subtitle2.srt ]; then
-
             echo "❌ subtitle2.srt kosong!"
-
             exit 1
-
           fi
 
-          SIZE=$(du -h subtitle2.srt |
-            cut -f1)
-
+          SIZE=$(du -h subtitle2.srt | cut -f1)
           LINES=$(wc -l < subtitle2.srt)
 
           echo ""
@@ -350,7 +319,6 @@ jobs:
           echo "📝 Lines: $LINES"
 
         env:
-
           SUBTITLE_URL: ${{ github.event.inputs.subtitle_url_2 }}
 
 
@@ -374,16 +342,12 @@ jobs:
           ls -lh subtitle1.srt
 
           if [ -f subtitle2.srt ]; then
-
             echo ""
             echo "Subtitle 2:"
             ls -lh subtitle2.srt
-
           else
-
             echo ""
             echo "ℹ️ Subtitle 2 tidak digunakan"
-
           fi
 
 
@@ -404,7 +368,6 @@ jobs:
             INPUT="$1"
             OUTPUT="$2"
 
-
             echo ""
             echo "----------------------------------------"
             echo "📄 File: $INPUT"
@@ -412,16 +375,13 @@ jobs:
 
 
             if [ ! -s "$INPUT" ]; then
-
               echo "❌ File tidak ditemukan atau kosong"
-
               exit 1
-
             fi
 
 
             # ------------------------------------------------------
-            # 1. CEK UTF-8
+            # CEK APAKAH SUDAH UTF-8
             # ------------------------------------------------------
 
             if iconv \
@@ -444,30 +404,21 @@ jobs:
 
 
             # ------------------------------------------------------
-            # 2. DETEKSI ENCODING
+            # DETEKSI ENCODING
             # ------------------------------------------------------
 
-            DETECTED=""
-
-            if command -v uchardet >/dev/null 2>&1; then
-
-              DETECTED=$(
-                uchardet "$INPUT" 2>/dev/null || true
-              )
-
-            fi
-
+            DETECTED=$(uchardet "$INPUT" 2>/dev/null || true)
 
             echo "🔍 Detected encoding:"
             echo "${DETECTED:-unknown}"
 
 
-            DETECTED_LOWER=$(echo "$DETECTED" |
-              tr '[:upper:]' '[:lower:]')
+            DETECTED_LOWER=$(echo "$DETECTED" \
+              | tr '[:upper:]' '[:lower:]')
 
 
             # ------------------------------------------------------
-            # 3. CONVERT BERDASARKAN HASIL DETEKSI
+            # CONVERT
             # ------------------------------------------------------
 
             case "$DETECTED_LOWER" in
@@ -537,7 +488,7 @@ jobs:
                 ;;
 
 
-              utf-16le|utf-16)
+              utf-16le)
 
                 echo "➡️ UTF-16LE → UTF-8"
 
@@ -563,9 +514,22 @@ jobs:
                 ;;
 
 
+              utf-16)
+
+                echo "➡️ UTF-16 → UTF-8"
+
+                iconv \
+                  -f UTF-16 \
+                  -t UTF-8 \
+                  "$INPUT" \
+                  > "$OUTPUT"
+
+                ;;
+
+
               *)
 
-                echo "⚠️ Encoding tidak dikenal"
+                echo "⚠️ Encoding tidak dikenali"
 
                 echo "➡️ Mencoba Windows-1252..."
 
@@ -609,7 +573,7 @@ jobs:
 
 
             # ------------------------------------------------------
-            # 4. VALIDASI HASIL
+            # VALIDASI HASIL
             # ------------------------------------------------------
 
             if ! iconv \
@@ -620,7 +584,6 @@ jobs:
             then
 
               echo "❌ Hasil conversion bukan UTF-8 valid"
-
               exit 1
 
             fi
@@ -629,7 +592,6 @@ jobs:
             if [ ! -s "$OUTPUT" ]; then
 
               echo "❌ Output subtitle kosong"
-
               exit 1
 
             fi
@@ -640,9 +602,9 @@ jobs:
           }
 
 
-          # ==========================================================
+          # ========================================================
           # SUBTITLE 1
-          # ==========================================================
+          # ========================================================
 
           normalize_subtitle \
             subtitle1.srt \
@@ -653,9 +615,9 @@ jobs:
             subtitle1.srt
 
 
-          # ==========================================================
+          # ========================================================
           # SUBTITLE 2
-          # ==========================================================
+          # ========================================================
 
           if [ -f subtitle2.srt ]; then
 
@@ -684,7 +646,7 @@ jobs:
         run: |
 
           echo "========================================"
-          echo "🎬 MUXING SUBTITLE"
+          echo "🎬 MUXING SUBTITLE INTO MKV"
           echo "========================================"
 
 
@@ -692,11 +654,11 @@ jobs:
           # LANGUAGE
           # ------------------------------------------------------
 
-          LANG1=$(echo "$SUB_LANGUAGE_1" |
-            tr -cd 'a-zA-Z-')
+          LANG1=$(echo "$SUB_LANGUAGE_1" \
+            | tr -cd 'a-zA-Z-')
 
-          LANG2=$(echo "$SUB_LANGUAGE_2" |
-            tr -cd 'a-zA-Z-')
+          LANG2=$(echo "$SUB_LANGUAGE_2" \
+            | tr -cd 'a-zA-Z-')
 
 
           # ------------------------------------------------------
@@ -711,34 +673,30 @@ jobs:
           # DEFAULT TRACK
           # ------------------------------------------------------
 
-          DEF1=$(echo "$SUB_DEFAULT_1" |
-            tr -cd 'a-zA-Z' |
-            tr '[:upper:]' '[:lower:]')
+          DEF1=$(echo "$SUB_DEFAULT_1" \
+            | tr -cd 'a-zA-Z' \
+            | tr '[:upper:]' '[:lower:]')
 
-          DEF2=$(echo "$SUB_DEFAULT_2" |
-            tr -cd 'a-zA-Z' |
-            tr '[:upper:]' '[:lower:]')
+          DEF2=$(echo "$SUB_DEFAULT_2" \
+            | tr -cd 'a-zA-Z' \
+            | tr '[:upper:]' '[:lower:]')
 
 
           # ------------------------------------------------------
           # VALIDATE DEFAULT
           # ------------------------------------------------------
 
-          if [ "$DEF1" != "yes" ] &&
-             [ "$DEF1" != "no" ]; then
+          if [ "$DEF1" != "yes" ] && [ "$DEF1" != "no" ]; then
 
             echo "❌ subtitle_default_1 harus yes/no"
-
             exit 1
 
           fi
 
 
-          if [ "$DEF2" != "yes" ] &&
-             [ "$DEF2" != "no" ]; then
+          if [ "$DEF2" != "yes" ] && [ "$DEF2" != "no" ]; then
 
             echo "❌ subtitle_default_2 harus yes/no"
-
             exit 1
 
           fi
@@ -752,7 +710,7 @@ jobs:
 
 
           # ========================================================
-          # 2 SUBTITLE
+          # 2 SUBTITLES
           # ========================================================
 
           if [ -f subtitle2.srt ]; then
@@ -798,21 +756,20 @@ jobs:
           fi
 
 
-          # ========================================================
-          # VERIFY OUTPUT
-          # ========================================================
+          # ------------------------------------------------------
+          # CHECK OUTPUT
+          # ------------------------------------------------------
 
           if [ ! -s "${OUTPUT_NAME}.mkv" ]; then
 
             echo "❌ Output MKV tidak berhasil dibuat!"
-
             exit 1
 
           fi
 
 
-          SIZE=$(du -sh "${OUTPUT_NAME}.mkv" |
-            cut -f1)
+          SIZE=$(du -sh "${OUTPUT_NAME}.mkv" \
+            | cut -f1)
 
 
           echo ""
@@ -855,7 +812,6 @@ jobs:
           if [ ! -f "${OUTPUT_NAME}.mkv" ]; then
 
             echo "❌ Output MKV tidak ditemukan!"
-
             exit 1
 
           fi
@@ -864,70 +820,35 @@ jobs:
           if [ ! -s "${OUTPUT_NAME}.mkv" ]; then
 
             echo "❌ Output MKV kosong!"
-
             exit 1
 
           fi
 
 
+          echo ""
+          echo "📁 Output file:"
           ls -lh "${OUTPUT_NAME}.mkv"
 
 
           echo ""
           echo "🎞️ Track information:"
 
+          mkvmerge -i "${OUTPUT_NAME}.mkv"
+
+
+          echo ""
+          echo "🔎 Checking MKV structure..."
 
           mkvmerge \
             -J \
             "${OUTPUT_NAME}.mkv" \
-            > output_info.json
-
-
-          python3 - <<'PY'
-import json
-
-with open(
-    "output_info.json",
-    "r",
-    encoding="utf-8"
-) as f:
-    data = json.load(f)
-
-tracks = data.get("tracks", [])
-
-for track in tracks:
-
-    track_id = track.get("id")
-    track_type = track.get("type")
-    codec = track.get("codec")
-
-    properties = track.get(
-        "properties",
-        {}
-    )
-
-    language = properties.get(
-        "language",
-        ""
-    )
-
-    name = properties.get(
-        "track_name",
-        ""
-    )
-
-    print(
-        f"Track {track_id}: "
-        f"{track_type} | "
-        f"{codec} | "
-        f"{language} | "
-        f"{name}"
-    )
-PY
+            > /dev/null
 
 
           echo ""
-          echo "✅ Output verification complete"
+          echo "========================================"
+          echo "✅ OUTPUT MKV VERIFIED"
+          echo "========================================"
 
 
       # ============================================================
@@ -976,31 +897,38 @@ PY
 
       - name: Telegram notify SUCCESS
         if: success()
+        env:
+
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+
+          SUBTITLE_NAME_1: ${{ github.event.inputs.subtitle_name_1 }}
+          SUBTITLE_NAME_2: ${{ github.event.inputs.subtitle_name_2 }}
+
+          SUBTITLE_LANGUAGE_1: ${{ github.event.inputs.subtitle_language_1 }}
+          SUBTITLE_LANGUAGE_2: ${{ github.event.inputs.subtitle_language_2 }}
+
+          SUBTITLE_URL_2: ${{ github.event.inputs.subtitle_url_2 }}
+
+          DRIVE_PATH: ${{ github.event.inputs.drive_path }}
+
         run: |
 
-          SUB2_INFO=""
+          MESSAGE="✅ SUCCESS
+          📁 File: ${OUTPUT_NAME}.mkv
+          📝 Sub 1: ${SUBTITLE_NAME_1} [${SUBTITLE_LANGUAGE_1}]"
+
 
           if [ -n "$SUBTITLE_URL_2" ]; then
 
-            SUB2_INFO="
+            MESSAGE="${MESSAGE}
           📝 Sub 2: ${SUBTITLE_NAME_2} [${SUBTITLE_LANGUAGE_2}]"
 
           fi
 
 
-          MESSAGE="\
-          ✅ SUCCESS
-
-          📁 File:
-          ${OUTPUT_NAME}.mkv
-
-          📝 Sub 1:
-          ${SUBTITLE_NAME_1} [${SUBTITLE_LANGUAGE_1}]
-          ${SUB2_INFO}
-
-          📂 Drive:
-          ${DRIVE_PATH}
-          "
+          MESSAGE="${MESSAGE}
+          📂 Drive: ${DRIVE_PATH}"
 
 
           curl \
@@ -1013,30 +941,7 @@ PY
             --data-urlencode "text=${MESSAGE}"
 
 
-          echo "✅ Telegram notification sent"
-
-        env:
-
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-
-          SUBTITLE_URL_2:
-            ${{ github.event.inputs.subtitle_url_2 }}
-
-          SUBTITLE_NAME_1:
-            ${{ github.event.inputs.subtitle_name_1 }}
-
-          SUBTITLE_NAME_2:
-            ${{ github.event.inputs.subtitle_name_2 }}
-
-          SUBTITLE_LANGUAGE_1:
-            ${{ github.event.inputs.subtitle_language_1 }}
-
-          SUBTITLE_LANGUAGE_2:
-            ${{ github.event.inputs.subtitle_language_2 }}
-
-          DRIVE_PATH:
-            ${{ github.event.inputs.drive_path }}
+          echo "✅ Telegram SUCCESS sent"
 
 
       # ============================================================
@@ -1045,17 +950,18 @@ PY
 
       - name: Telegram notify FAILED
         if: failure()
+        env:
+
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+
+          SOURCE_URL: ${{ github.event.inputs.source_url }}
+
         run: |
 
-          MESSAGE="\
-          ❌ FAILED
-
-          📁 File:
-          ${OUTPUT_NAME}.mkv
-
-          🔗 Source:
-          ${SOURCE_URL}
-          "
+          MESSAGE="❌ FAILED
+          📁 File: ${OUTPUT_NAME}.mkv
+          🔗 Source: ${SOURCE_URL}"
 
 
           curl \
@@ -1067,15 +973,7 @@ PY
             --data-urlencode "text=${MESSAGE}"
 
 
-          echo "❌ Telegram failure notification sent"
-
-        env:
-
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-
-          SOURCE_URL:
-            ${{ github.event.inputs.source_url }}
+          echo "❌ Telegram FAILED sent"
 
 
       # ============================================================
@@ -1094,10 +992,10 @@ PY
           rm -f input.mkv
 
           rm -f subtitle1.srt
-
           rm -f subtitle2.srt
 
-          rm -f output_info.json
+          rm -f subtitle1_utf8.srt
+          rm -f subtitle2_utf8.srt
 
           rm -f "${OUTPUT_NAME}.mkv"
 
